@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+
+  db:
+    image: postgres:17 # Use a specific, recent Postgres version
+    restart: unless-stopped
+    shm_size: 128mb # Recommended for performance in Docker Compose
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1488
+      POSTGRES_DB: jeffrey
+    volumes:
+      - data:/var/lib/postgresql/data
+
+volumes:
+  data:
+  node_modules:
