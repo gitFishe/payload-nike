@@ -1803,31 +1803,18 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Header {
   id: number;
-  logo?: (number | null) | Media;
   navItems?:
     | {
-        tabName: string;
-        tabLink?: string | null;
-        colLinks?:
-          | {
-              col?:
-                | {
-                    ulName?: string | null;
-                    ulLink?: string | null;
-                    id?: string | null;
-                  }[]
-                | null;
-              showCol2?: boolean | null;
-              col2?:
-                | {
-                    ulName?: string | null;
-                    ulLink?: string | null;
-                    id?: string | null;
-                  }[]
-                | null;
-              id?: string | null;
-            }[]
-          | null;
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: number | Page;
+          } | null;
+          url?: string | null;
+          label: string;
+        };
         id?: string | null;
       }[]
     | null;
@@ -1863,31 +1850,17 @@ export interface Footer {
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
-  logo?: T;
   navItems?:
     | T
     | {
-        tabName?: T;
-        tabLink?: T;
-        colLinks?:
+        link?:
           | T
           | {
-              col?:
-                | T
-                | {
-                    ulName?: T;
-                    ulLink?: T;
-                    id?: T;
-                  };
-              showCol2?: T;
-              col2?:
-                | T
-                | {
-                    ulName?: T;
-                    ulLink?: T;
-                    id?: T;
-                  };
-              id?: T;
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
             };
         id?: T;
       };
