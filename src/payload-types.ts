@@ -1831,6 +1831,7 @@ export interface Header {
         id?: string | null;
       }[]
     | null;
+  searchBar?: boolean | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1891,6 +1892,7 @@ export interface HeaderSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  searchBar?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

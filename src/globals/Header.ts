@@ -90,5 +90,10 @@ export const Header: GlobalConfig = {
         },
       ],
     },
+    {
+      name:'searchBar',
+      type:'checkbox',
+      defaultValue:true,
+    }
   ],
 }
