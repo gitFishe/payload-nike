@@ -4,12 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="851ba12a-6553-4555-82c4-b7f488a2d6c0" name="Changes" comment="feat: enhance header configuration with logo and nested navigation structure">
-      <change afterPath="$PROJECT_DIR$/public/icon/search-icon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SearchBar/index.tsx" afterDir="false" />
+    <list default="true" id="851ba12a-6553-4555-82c4-b7f488a2d6c0" name="Changes" comment="feat: add search bar component and integrate into header">
+      <change afterPath="$PROJECT_DIR$/public/icon/swiper-pause.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icon/swiper-play.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icon/swiper-video-arrow.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(app)/shop/new.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/blocks/BigImgs/Component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/blocks/BigImgs/config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/blocks/CustomSwiper/Component.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/blocks/CustomSwiper/SwiperBtn.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/blocks/CustomSwiper/config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/SmallWhiteBtn/Component.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(app)/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blocks/RenderBlocks.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/RenderBlocks.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/collections/Pages/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/collections/Pages/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Header/index.client.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/index.client.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/globals/Header.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/globals/Header.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/payload-types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/payload-types.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,7 +35,7 @@
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="295" />
+    <option name="cachedIndexableFilesCount" value="311" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -74,28 +86,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.docker-compose.yml.db: Compose Deployment.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "#3 on feature/header",
-    "js.debugger.nextJs.config.created.client": "true",
-    "js.debugger.nextJs.config.created.server": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "D:\\HTML\\payload-nike\\node_modules\\prettier",
-    "ts.external.directory.path": "D:\\HTML\\payload-nike\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.docker-compose.yml.db: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#3 on feature/header&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
+    &quot;js.debugger.nextJs.config.created.client&quot;: &quot;true&quot;,
+    &quot;js.debugger.nextJs.config.created.server&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;D:\\HTML\\payload-nike\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\HTML\\payload-nike\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RdControllerToolWindowsLayoutState" isNewUi="true">
     <layout>
       <window_info id="Bookmarks" side_tool="true" />
@@ -198,7 +212,14 @@
       <workItem from="1773650923289" duration="8814000" />
       <workItem from="1773667897550" duration="49000" />
       <workItem from="1773670188152" duration="20256000" />
-      <workItem from="1773741337933" duration="7734000" />
+      <workItem from="1773741337933" duration="13452000" />
+      <workItem from="1773868897448" duration="4609000" />
+      <workItem from="1773922203359" duration="6187000" />
+      <workItem from="1774008741758" duration="20047000" />
+      <workItem from="1774088051668" duration="14556000" />
+      <workItem from="1774184113291" duration="12864000" />
+      <workItem from="1774209209489" duration="11657000" />
+      <workItem from="1774259791739" duration="13628000" />
     </task>
     <task id="LOCAL-00001" summary="feat: enhance header configuration with logo and nested navigation structure">
       <option name="closed" value="true" />
@@ -208,7 +229,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773667938635</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: add search bar component and integrate into header">
+      <option name="closed" value="true" />
+      <created>1773782905288</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1773782905288</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,7 +278,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: enhance header configuration with logo and nested navigation structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: enhance header configuration with logo and nested navigation structure" />
+    <MESSAGE value="feat: add search bar component and integrate into header" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add search bar component and integrate into header" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

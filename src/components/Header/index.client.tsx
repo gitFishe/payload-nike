@@ -103,7 +103,7 @@ export function HeaderClient({
         <div className="flex h-15 justify-between items-center">
           <div className="w-10 h-10 border">
             {/* eslint-disable-next-line @next/next/no-img-element,jsx-a11y/alt-text */}
-            <img src={logo.url || undefined} />
+            {/*<img src={logo.url || undefined} />*/}
           </div>
 
           <ul className="flex absolute text-black h-15 w-full items-center justify-center left-0">

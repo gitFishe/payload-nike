@@ -485,6 +485,8 @@ export interface Page {
     | ThreeItemGridBlock
     | BannerBlock
     | FormBlock
+    | Swiper
+    | BigImgs
   )[];
   meta?: {
     title?: string | null;
@@ -866,6 +868,77 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Swiper".
+ */
+export interface Swiper {
+  slides?:
+    | {
+        background?: (number | null) | Media;
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?: {
+            relationTo: 'pages';
+            value: number | Page;
+          } | null;
+          url?: string | null;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        title?: string | null;
+        description?: string | null;
+        buttonsGroup?:
+          | {
+              buttonType: 'link' | 'video';
+              label: string;
+              link?: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?: {
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null;
+                url?: string | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'customSwiperBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BigImgs".
+ */
+export interface BigImgs {
+  blocks: {
+    img: number | Media;
+    link?: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?: {
+        relationTo: 'pages';
+        value: number | Page;
+      } | null;
+      url?: string | null;
+    };
+    title: string;
+    description?: string | null;
+    btn?: string | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'bigImgs';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "variants".
  */
 export interface Variant {
@@ -1232,6 +1305,8 @@ export interface PagesSelect<T extends boolean = true> {
         threeItemGrid?: T | ThreeItemGridBlockSelect<T>;
         banner?: T | BannerBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        customSwiperBlock?: T | SwiperSelect<T>;
+        bigImgs?: T | BigImgsSelect<T>;
       };
   meta?:
     | T
@@ -1359,6 +1434,71 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Swiper_select".
+ */
+export interface SwiperSelect<T extends boolean = true> {
+  slides?:
+    | T
+    | {
+        background?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              appearance?: T;
+            };
+        title?: T;
+        description?: T;
+        buttonsGroup?:
+          | T
+          | {
+              buttonType?: T;
+              label?: T;
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                  };
+              id?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BigImgs_select".
+ */
+export interface BigImgsSelect<T extends boolean = true> {
+  blocks?:
+    | T
+    | {
+        img?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+            };
+        title?: T;
+        description?: T;
+        btn?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

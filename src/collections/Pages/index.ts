@@ -10,6 +10,10 @@ import { CallToAction } from '@/blocks/CallToAction/config'
 import { Content } from '@/blocks/Content/config'
 import { FormBlock } from '@/blocks/Form/config'
 import { MediaBlock } from '@/blocks/MediaBlock/config'
+import { CustomSwiperBlock } from '@/blocks/CustomSwiper/config'
+import { BigImgsBlock } from '@/blocks/BigImgs/config'
+
+
 import { hero } from '@/fields/hero'
 import { slugField } from 'payload'
 import { adminOrPublishedStatus } from '@/access/adminOrPublishedStatus'
@@ -103,6 +107,8 @@ export const Pages: CollectionConfig = {
                 ThreeItemGrid,
                 Banner,
                 FormBlock,
+                CustomSwiperBlock,
+                BigImgsBlock,
               ],
               required: true,
             },
