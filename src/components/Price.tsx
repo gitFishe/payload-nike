@@ -1,71 +1,35 @@
-'use client'
-import { useCurrency } from '@payloadcms/plugin-ecommerce/client/react'
-import React, { useMemo } from 'react'
+import React from 'react'
 
-type BaseProps = {
+type PriceProps = {
+  currentPrice: number
+  initialPrice?: number | null
+  discountPercentage?: number | null
+  currency?: string
   className?: string
-  currencyCodeClassName?: string
-  as?: 'span' | 'p'
 }
-
-type PriceFixed = {
-  amount: number
-  currencyCode?: string
-  highestAmount?: never
-  lowestAmount?: never
-}
-
-type PriceRange = {
-  amount?: never
-  currencyCode?: string
-  highestAmount: number
-  lowestAmount: number
-}
-
-type Props = BaseProps & (PriceFixed | PriceRange)
 
 export const Price = ({
-  amount,
-  className,
-  highestAmount,
-  lowestAmount,
-  currencyCode: currencyCodeFromProps,
-  as = 'p',
-}: Props & React.ComponentProps<'p'>) => {
-  const { formatCurrency, supportedCurrencies } = useCurrency()
-
-  const Element = as
-
-  const currencyToUse = useMemo(() => {
-    if (currencyCodeFromProps) {
-      return supportedCurrencies.find((currency) => currency.code === currencyCodeFromProps)
-    }
-    return undefined
-  }, [currencyCodeFromProps, supportedCurrencies])
-
-  if (typeof amount === 'number') {
-    return (
-      <Element className={className} suppressHydrationWarning>
-        {formatCurrency(amount, { currency: currencyToUse })}
-      </Element>
-    )
+  currentPrice,
+  initialPrice,
+  discountPercentage,
+  currency = 'USD',
+  className = '',
+}: PriceProps) => {
+  const formatPrice = (amount: number) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: currency,
+      maximumFractionDigits: 2,
+    }).format(amount)
   }
 
-  if (highestAmount && highestAmount !== lowestAmount) {
-    return (
-      <Element className={className} suppressHydrationWarning>
-        {`${formatCurrency(lowestAmount, { currency: currencyToUse })} - ${formatCurrency(highestAmount, { currency: currencyToUse })}`}
-      </Element>
-    )
-  }
+  return (
+    <div className={`flex font-medium ${className}`}>
+      <span>{formatPrice(currentPrice)}</span>
 
-  if (lowestAmount) {
-    return (
-      <Element className={className} suppressHydrationWarning>
-        {`${formatCurrency(lowestAmount, { currency: currencyToUse })}`}
-      </Element>
-    )
-  }
+      {initialPrice && initialPrice > currentPrice && <span className='text-secondary line-through pl-1.25'>{formatPrice(initialPrice)}</span>}
 
-  return null
+      {(discountPercentage ?? 0 ) > 0 && <span className='pl-2 text-success'>-{discountPercentage}% off</span>}
+    </div>
+  )
 }

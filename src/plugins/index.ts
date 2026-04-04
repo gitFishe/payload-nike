@@ -9,7 +9,7 @@ import { stripeAdapter } from '@payloadcms/plugin-ecommerce/payments/stripe'
 
 import { Page, Product } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
-import { ProductsCollection } from '@/collections/Products'
+import { Products} from '@/collections/Products'
 import { adminOrPublishedStatus } from '@/access/adminOrPublishedStatus'
 import { adminOnlyFieldAccess } from '@/access/adminOnlyFieldAccess'
 import { customerOnlyFieldAccess } from '@/access/customerOnlyFieldAccess'
@@ -86,7 +86,34 @@ export const plugins: Plugin[] = [
       ],
     },
     products: {
-      productsCollectionOverride: ProductsCollection,
+      productsCollectionOverride: ({ defaultCollection }) => {
+        // 1. Беремо всі твої поля з Products.ts
+        const myCustomFields = Products.fields || []
+
+        // 2. Беремо всі системні поля, які згенерував плагін
+        const pluginSystemFields = defaultCollection.fields
+
+        return {
+          ...defaultCollection,
+          ...Products,
+          // 3. Створюємо Таби і розкидаємо поля по них
+          fields: [
+            {
+              type: 'tabs',
+              tabs: [
+                {
+                  label: 'Main Fields',
+                  fields: myCustomFields, // Твої чисті поля тут
+                },
+                {
+                  label: 'Required By Payload',
+                  fields: pluginSystemFields, // Усе системне сміття лежить тут
+                },
+              ],
+            },
+          ],
+        }
+      },
     },
   }),
 ]

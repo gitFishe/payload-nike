@@ -52,6 +52,9 @@ export default {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
         },
+        sale: {
+          DEFAULT: 'hsl(var(--sale))',
+        },
         background: 'hsl(var(--background))',
         border: 'hsl(var(--border))',
         card: {

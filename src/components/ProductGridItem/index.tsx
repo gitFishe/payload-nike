@@ -11,51 +11,46 @@ type Props = {
 }
 
 export const ProductGridItem: React.FC<Props> = ({ product }) => {
-  const { gallery, priceInUSD, title } = product
+  const { imageUrl, title, subTitle, currentPrice, initialPrice, discountPercentage, currency } =
+    product
 
-  let price = priceInUSD
+  // const image =
+  //   gallery?.[0]?.image && typeof gallery[0]?.image !== 'string' ? gallery[0]?.image : false
 
-  const variants = product.variants?.docs
-
-  if (variants && variants.length > 0) {
-    const variant = variants[0]
-    if (
-      variant &&
-      typeof variant === 'object' &&
-      variant?.priceInUSD &&
-      typeof variant.priceInUSD === 'number'
-    ) {
-      price = variant.priceInUSD
-    }
-  }
-
-  const image =
-    gallery?.[0]?.image && typeof gallery[0]?.image !== 'string' ? gallery[0]?.image : false
 
   return (
-    <Link className="relative inline-block h-full w-full group" href={`/products/${product.slug}`}>
-      {image ? (
+    <Link className="relative w-1/3 px-2" href={`/products/${product.productCode}`}>
+      {imageUrl ? (
         <Media
-          className={clsx(
-            'relative aspect-square object-cover border rounded-2xl p-8 bg-primary-foreground',
-          )}
+          className={clsx('relative aspect-square object-cover bg-primary-foreground')}
           height={80}
-          imgClassName={clsx('h-full w-full object-cover rounded-2xl', {
+          imgClassName={clsx('h-full w-full object-cover', {
             'transition duration-300 ease-in-out group-hover:scale-102': true,
           })}
-          resource={image}
+          src={imageUrl}
           width={80}
         />
-      ) : null}
+      ) : (
+        <div>
+          <span>Image Is Not Found</span>
+        </div>
+      )}
 
-      <div className="font-mono text-primary/50 group-hover:text-primary flex justify-between items-center mt-4">
-        <div>{title}</div>
+      <div className="pt-3 min-h-55">
+        <div>
+          <span>{title}</span>
+        </div>
+        <div className='text-base text-secondary'>
+          <span>{subTitle}</span>
+        </div>
 
-        {typeof price === 'number' && (
-          <div className="">
-            <Price amount={price} />
-          </div>
-        )}
+        <div className="">
+          <Price currentPrice={currentPrice || 0}
+                 initialPrice={initialPrice || null}
+                 discountPercentage={discountPercentage || null}
+                 currency={currency || 'USD'}
+          />
+        </div>
       </div>
     </Link>
   )

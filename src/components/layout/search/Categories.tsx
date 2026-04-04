@@ -5,23 +5,26 @@ import React, { Suspense } from 'react'
 
 import { FilterList } from './filter'
 import { CategoryItem } from './Categories.client'
+import { sql } from '@payloadcms/db-postgres'
 
 async function CategoryList() {
   const payload = await getPayload({ config: configPromise })
 
-  const categories = await payload.find({
-    collection: 'categories',
-    sort: 'title',
-  })
+
+  const result = await payload.db.drizzle.execute(
+    sql`SELECT DISTINCT "product_type" FROM products WHERE "product_type" IS NOT NULL`,
+  )
+
+  const categories = result.rows.map((r: any) => r.product_type)
 
   return (
     <div>
       <h3 className="text-xs mb-2 text-neutral-500 dark:text-neutral-400">Category</h3>
 
       <ul>
-        {categories.docs.map((category) => {
+        {categories.map((category) => {
           return (
-            <li key={category.id}>
+            <li key={category}>
               <CategoryItem category={category} />
             </li>
           )
@@ -40,16 +43,14 @@ export function Categories() {
     <Suspense
       fallback={
         <div className="col-span-2 hidden h-[400px] w-full flex-none py-4 lg:block">
-          <div className={clsx(skeleton, activeAndTitles)} />
-          <div className={clsx(skeleton, activeAndTitles)} />
-          <div className={clsx(skeleton, items)} />
-          <div className={clsx(skeleton, items)} />
-          <div className={clsx(skeleton, items)} />
-          <div className={clsx(skeleton, items)} />
-          <div className={clsx(skeleton, items)} />
-          <div className={clsx(skeleton, items)} />
-          <div className={clsx(skeleton, items)} />
-          <div className={clsx(skeleton, items)} />
+          {Array.from({ length: 2 }).map((_, i) => (
+            <div key={i} className={clsx(skeleton, activeAndTitles)} />
+          ))}
+
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div key={i} className={clsx(skeleton, items)} />
+          ))}
+
         </div>
       }
     >

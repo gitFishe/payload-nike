@@ -3,7 +3,7 @@ import { ProductGridItem } from '@/components/ProductGridItem'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import React from 'react'
-
+export const dynamic = 'force-dynamic'
 export const metadata = {
   description: 'Search for products in the store.',
   title: 'Shop',
@@ -11,72 +11,36 @@ export const metadata = {
 
 type SearchParams = { [key: string]: string | string[] | undefined }
 
-type Props = {
-  searchParams: Promise<SearchParams>
-}
+// type Props = {
+//   searchParams: Promise<SearchParams>
+// }
 
-export default async function ShopPage({ searchParams }: Props) {
-  const { q: searchValue, sort, category } = await searchParams
+export default async function ShopPage(props: any) {
+  const { q: searchValue, sort, category } = await props.searchParams
   const payload = await getPayload({ config: configPromise })
+
+  const where: any = {}
+
+  if (category) {
+    where.productType = { equals: category }
+  }
+
+  if (searchValue) {
+    where.or = [{ title: { like: searchValue } }, { subTitle: { like: searchValue } }]
+  }
 
   const products = await payload.find({
     collection: 'products',
-    draft: false,
-    overrideAccess: false,
-    select: {
-      title: true,
-      slug: true,
-      gallery: true,
-      categories: true,
-      priceInUSD: true,
-    },
-    ...(sort ? { sort } : { sort: 'title' }),
-    ...(searchValue || category
-      ? {
-          where: {
-            and: [
-              {
-                _status: {
-                  equals: 'published',
-                },
-              },
-              ...(searchValue
-                ? [
-                    {
-                      or: [
-                        {
-                          title: {
-                            like: searchValue,
-                          },
-                        },
-                        {
-                          description: {
-                            like: searchValue,
-                          },
-                        },
-                      ],
-                    },
-                  ]
-                : []),
-              ...(category
-                ? [
-                    {
-                      categories: {
-                        contains: category,
-                      },
-                    },
-                  ]
-                : []),
-            ],
-          },
-        }
-      : {}),
+    draft: true,
+    overrideAccess: true,
+    limit: 30,
+    ...(Object.keys(where).length > 0 ? { where } : {}),
   })
 
   const resultsText = products.docs.length > 1 ? 'results' : 'result'
 
   return (
-    <div>
+    <div className="flex h-full padding-x-10 flex-wrap">
       {searchValue ? (
         <p className="mb-4">
           {products.docs?.length === 0
@@ -86,17 +50,13 @@ export default async function ShopPage({ searchParams }: Props) {
         </p>
       ) : null}
 
-      {!searchValue && products.docs?.length === 0 && (
+      {products?.docs.length > 0 ? (
+        products.docs.map((product) => {
+          return <ProductGridItem key={product.id} product={product} />
+        })
+      ) : (
         <p className="mb-4">No products found. Please try different filters.</p>
       )}
-
-      {products?.docs.length > 0 ? (
-        <Grid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {products.docs.map((product) => {
-            return <ProductGridItem key={product.id} product={product} />
-          })}
-        </Grid>
-      ) : null}
     </div>
   )
 }

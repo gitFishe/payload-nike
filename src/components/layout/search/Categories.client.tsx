@@ -6,17 +6,18 @@ import { usePathname, useSearchParams, useRouter } from 'next/navigation'
 import clsx from 'clsx'
 
 type Props = {
-  category: Category
+  category: string
 }
 
 export const CategoryItem: React.FC<Props> = ({ category }) => {
+
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
   const isActive = useMemo(() => {
-    return searchParams.get('category') === String(category.id)
-  }, [category.id, searchParams])
+    return searchParams.get('category') === category
+  }, [category, searchParams])
 
   const setQuery = useCallback(() => {
     const params = new URLSearchParams(searchParams.toString())
@@ -24,13 +25,13 @@ export const CategoryItem: React.FC<Props> = ({ category }) => {
     if (isActive) {
       params.delete('category')
     } else {
-      params.set('category', String(category.id))
+      params.set('category', category)
     }
 
     const newParams = params.toString()
 
     router.push(pathname + '?' + newParams)
-  }, [category.id, isActive, pathname, router, searchParams])
+  }, [category, isActive, pathname, router, searchParams])
 
   return (
     <button
@@ -39,7 +40,7 @@ export const CategoryItem: React.FC<Props> = ({ category }) => {
         ' underline': isActive,
       })}
     >
-      {category.title}
+      {category}
     </button>
   )
 }
