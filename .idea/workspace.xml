@@ -4,31 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="851ba12a-6553-4555-82c4-b7f488a2d6c0" name="Changes" comment="feat: add search bar component and integrate into header">
-      <change afterPath="$PROJECT_DIR$/import-data/dataset_nike-scraper-all-in-one---cheap_2026-03-24_14-50-23-895.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import-data/dataset_nike-scraper-all-in-one---cheap_2026-03-24_15-13-52-619.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import-data/dataset_nike-scraper-all-in-one---cheap_2026-03-24_15-22-32-244.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import-data/dataset_nike-scraper-all-in-one---cheap_2026-03-24_15-23-46-600.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import-data/dataset_nike-scraper-all-in-one---cheap_2026-03-24_15-25-40-193.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import-data/dataset_nike-scraper-all-in-one---cheap_2026-03-24_15-31-33-005 (1).json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import-data/dataset_nike-scraper-all-in-one---cheap_2026-03-24_15-31-33-005.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/import.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(app)/shop/test.tsx" afterDir="false" />
+    <list default="true" id="851ba12a-6553-4555-82c4-b7f488a2d6c0" name="Changes" comment="feat: update product model and import functionality with new fields and data handling">
+      <change afterPath="$PROJECT_DIR$/src/app/(app)/shop/ProductInfiniteList.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(app)/shop/api/route.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(app)/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(app)/products/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/products/[slug]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(app)/shop/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/shop/layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(app)/shop/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/shop/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(payload)/admin/importMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(payload)/admin/importMap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/collections/Products/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/collections/Products/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Price.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Price.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ProductGridItem/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProductGridItem/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/search/Categories.client.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/search/Categories.client.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/search/Categories.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/search/Categories.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/payload-types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/payload-types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/plugins/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/plugins/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.mjs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +21,7 @@
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="617" />
+    <option name="cachedIndexableFilesCount" value="618" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -241,7 +221,9 @@
       <workItem from="1775157649487" duration="304000" />
       <workItem from="1775157968063" duration="9733000" />
       <workItem from="1775223188956" duration="20358000" />
-      <workItem from="1775287512264" duration="7611000" />
+      <workItem from="1775287512264" duration="10377000" />
+      <workItem from="1775477692119" duration="18436000" />
+      <workItem from="1775554373026" duration="7913000" />
     </task>
     <task id="LOCAL-00001" summary="feat: enhance header configuration with logo and nested navigation structure">
       <option name="closed" value="true" />
@@ -259,7 +241,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773782905288</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat: update product model and import functionality with new fields and data handling">
+      <option name="closed" value="true" />
+      <created>1775302480244</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1775302480244</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,7 +291,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: enhance header configuration with logo and nested navigation structure" />
     <MESSAGE value="feat: add search bar component and integrate into header" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add search bar component and integrate into header" />
+    <MESSAGE value="feat: update product model and import functionality with new fields and data handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: update product model and import functionality with new fields and data handling" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

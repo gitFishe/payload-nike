@@ -1,5 +1,6 @@
 import { Grid } from '@/components/Grid'
 import { ProductGridItem } from '@/components/ProductGridItem'
+import { ProductInfiniteList } from './ProductInfiniteList'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import React from 'react'
@@ -33,30 +34,37 @@ export default async function ShopPage(props: any) {
     collection: 'products',
     draft: true,
     overrideAccess: true,
-    limit: 30,
+    limit: 12,
+    page:1,
     ...(Object.keys(where).length > 0 ? { where } : {}),
   })
 
   const resultsText = products.docs.length > 1 ? 'results' : 'result'
 
   return (
-    <div className="flex h-full padding-x-10 flex-wrap">
-      {searchValue ? (
-        <p className="mb-4">
-          {products.docs?.length === 0
-            ? 'There are no products that match '
-            : `Showing ${products.docs.length} ${resultsText} for `}
-          <span className="font-bold">&quot;{searchValue}&quot;</span>
-        </p>
-      ) : null}
+    <ProductInfiniteList
+      initialDocs={products.docs}
+      initialTotalPages={products.totalPages}
+      initialHasNextPage={products.hasNextPage}
+    />
 
-      {products?.docs.length > 0 ? (
-        products.docs.map((product) => {
-          return <ProductGridItem key={product.id} product={product} />
-        })
-      ) : (
-        <p className="mb-4">No products found. Please try different filters.</p>
-      )}
-    </div>
+    // <div className="flex h-full padding-x-10 flex-wrap">
+    //   {searchValue ? (
+    //     <p className="mb-4">
+    //       {products.docs?.length === 0
+    //         ? 'There are no products that match '
+    //         : `Showing ${products.docs.length} ${resultsText} for `}
+    //       <span className="font-bold">&quot;{searchValue}&quot;</span>
+    //     </p>
+    //   ) : null}
+    //
+    //   {products?.docs.length > 0 ? (
+    //     products.docs.map((product) => {
+    //       return <ProductGridItem key={product.id} product={product} />
+    //     })
+    //   ) : (
+    //     <p className="mb-4">No products found. Please try different filters.</p>
+    //   )}
+    // </div>
   )
 }
