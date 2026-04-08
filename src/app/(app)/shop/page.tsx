@@ -35,7 +35,8 @@ export default async function ShopPage(props: any) {
     draft: true,
     overrideAccess: true,
     limit: 12,
-    page:1,
+    page: 1,
+    sort: 'id',
     ...(Object.keys(where).length > 0 ? { where } : {}),
   })
 

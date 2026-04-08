@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="851ba12a-6553-4555-82c4-b7f488a2d6c0" name="Changes" comment="feat: update product model and import functionality with new fields and data handling">
-      <change afterPath="$PROJECT_DIR$/src/app/(app)/shop/ProductInfiniteList.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(app)/shop/api/route.ts" afterDir="false" />
+    <list default="true" id="851ba12a-6553-4555-82c4-b7f488a2d6c0" name="Changes" comment="feat: implement ProductInfiniteList component and update pagination logic in page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(app)/shop/ProductInfiniteList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/shop/ProductInfiniteList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(app)/shop/api/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/shop/api/route.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(app)/shop/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/shop/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(payload)/admin/importMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(payload)/admin/importMap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/payload-types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/payload-types.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,12 +23,12 @@
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="618" />
+    <option name="cachedIndexableFilesCount" value="619" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="feature/header" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -81,7 +83,7 @@
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#3 on feature/header&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
     &quot;js.debugger.nextJs.config.created.client&quot;: &quot;true&quot;,
     &quot;js.debugger.nextJs.config.created.server&quot;: &quot;true&quot;,
@@ -224,6 +226,8 @@
       <workItem from="1775287512264" duration="10377000" />
       <workItem from="1775477692119" duration="18436000" />
       <workItem from="1775554373026" duration="7913000" />
+      <workItem from="1775644334142" duration="17630000" />
+      <workItem from="1775679080993" duration="7458000" />
     </task>
     <task id="LOCAL-00001" summary="feat: enhance header configuration with logo and nested navigation structure">
       <option name="closed" value="true" />
@@ -276,7 +280,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="penis" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>

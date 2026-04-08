@@ -28,8 +28,15 @@ export async function GET(req:NextRequest) {
     collection: 'products',
     limit: limit,
     page: page,
+    sort: 'id',
     ...(Object.keys(where).length > 0 ? { where } : {}),
   })
+
+  console.log('--- API DEBUG ---')
+  console.log('requested page:', page, 'limit:', limit)
+  console.log('returned page:', products.page, 'totalPages:', products.totalPages, 'totalDocs:', products.totalDocs)
+  console.log('first doc id:', products.docs[0]?.id, 'last doc id:', products.docs[products.docs.length - 1]?.id)
+  console.log('hasNextPage:', products.hasNextPage)
 
   return NextResponse.json({
     docs:products.docs,
