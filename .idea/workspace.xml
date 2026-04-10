@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="851ba12a-6553-4555-82c4-b7f488a2d6c0" name="Changes" comment="feat: implement ProductInfiniteList component and update pagination logic in page">
+    <list default="true" id="851ba12a-6553-4555-82c4-b7f488a2d6c0" name="Changes" comment="feat: refine ProductInfiniteList and route handling by improving image URL validation and removing debug logs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/import-data/dataset_nike-scraper-all-in-one---cheap_2026-03-24_15-31-33-005 (1).json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(app)/shop/ProductInfiniteList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/shop/ProductInfiniteList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(app)/shop/api/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/shop/api/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(app)/shop/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/shop/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(payload)/admin/importMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(payload)/admin/importMap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/payload-types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/payload-types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProductGridItem/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProductGridItem/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,6 +227,8 @@
       <workItem from="1775554373026" duration="7913000" />
       <workItem from="1775644334142" duration="17630000" />
       <workItem from="1775679080993" duration="7458000" />
+      <workItem from="1775733250937" duration="323000" />
+      <workItem from="1775827566753" duration="4128000" />
     </task>
     <task id="LOCAL-00001" summary="feat: enhance header configuration with logo and nested navigation structure">
       <option name="closed" value="true" />
@@ -296,7 +297,8 @@
     <MESSAGE value="feat: enhance header configuration with logo and nested navigation structure" />
     <MESSAGE value="feat: add search bar component and integrate into header" />
     <MESSAGE value="feat: update product model and import functionality with new fields and data handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: update product model and import functionality with new fields and data handling" />
+    <MESSAGE value="feat: refine ProductInfiniteList and route handling by improving image URL validation and removing debug logs" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: refine ProductInfiniteList and route handling by improving image URL validation and removing debug logs" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

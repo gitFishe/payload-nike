@@ -20,7 +20,7 @@ export const ProductGridItem: React.FC<Props> = ({ product }) => {
 
   return (
     <Link className="relative w-1/3 px-2" href={`/products/${product.productCode}`}>
-      {imageUrl ? (
+      {imageUrl && imageUrl.startsWith('http') ? (
         <Media
           className={clsx('relative aspect-square object-cover bg-primary-foreground')}
           height={80}

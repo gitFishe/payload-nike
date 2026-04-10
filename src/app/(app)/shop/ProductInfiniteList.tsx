@@ -71,7 +71,6 @@ export const ProductInfiniteList = ({ initialDocs, initialTotalPages, initialHas
     let timeout:ReturnType<typeof setTimeout>
 
     const saveState = () => {
-      console.log('saving state', window.scrollY)
       sessionStorage.setItem('shop-scroll', JSON.stringify({
         scrollY: window.scrollY,
         products,

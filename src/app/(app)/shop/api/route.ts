@@ -4,8 +4,7 @@ import configPromise from '@payload-config'
 
 export async function GET(req:NextRequest) {
 
-  const {searchParams} = req.nextUrl;
-  console.log(searchParams,'searchParams')
+  const {searchParams} = req.nextUrl
 
   const page = parseInt(searchParams.get('page') || '1',10)
   const limit = parseInt(searchParams.get('limit') || '12',10)
@@ -31,12 +30,6 @@ export async function GET(req:NextRequest) {
     sort: 'id',
     ...(Object.keys(where).length > 0 ? { where } : {}),
   })
-
-  console.log('--- API DEBUG ---')
-  console.log('requested page:', page, 'limit:', limit)
-  console.log('returned page:', products.page, 'totalPages:', products.totalPages, 'totalDocs:', products.totalDocs)
-  console.log('first doc id:', products.docs[0]?.id, 'last doc id:', products.docs[products.docs.length - 1]?.id)
-  console.log('hasNextPage:', products.hasNextPage)
 
   return NextResponse.json({
     docs:products.docs,
