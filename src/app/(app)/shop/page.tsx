@@ -17,10 +17,29 @@ type SearchParams = { [key: string]: string | string[] | undefined }
 // }
 
 export default async function ShopPage(props: any) {
-  const { q: searchValue, sort, category } = await props.searchParams
+  const searchParams = await props.searchParams
+  const { q: searchValue, sort, category } = searchParams
   const payload = await getPayload({ config: configPromise })
 
   const where: any = {}
+
+  const Reserved = new Set(['q','sort','category', 'page'])
+  const andConditions: any[] = []
+
+  for (const [key,raw] of Object.entries(searchParams)) {
+    if(Reserved.has(key) || !raw) continue
+
+    const values = String(raw).split(',').filter(Boolean)
+    if(!values.length) continue
+
+    if(key === 'onSale') {
+      andConditions.push({[`filters.${key}`]:{equals:true}})
+    } else {
+      andConditions.push({[`filters.${key}`]:{in:values}})
+    }
+  }
+
+  if(andConditions.length) where.and = andConditions
 
   if (category) {
     where.productType = { equals: category }

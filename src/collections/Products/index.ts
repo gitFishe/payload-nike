@@ -76,5 +76,65 @@ export const Products: CollectionConfig = {
       label: 'Image URL',
       type: 'text',
     },
+    {
+      name: 'filters',
+      label: 'Filters',
+      type: 'array',
+      admin: {
+        initCollapsed: true,
+      },
+      fields: [
+        {
+          name: 'type',
+          label: 'Filter Type',
+          type: 'select',
+          required: true,
+          options: [
+            { label: 'Color', value: 'color' },
+            { label: 'Size', value: 'size' },
+            { label: 'Gender', value: 'gender' },
+            { label: 'On Sale', value: 'onSale' },
+          ],
+        },
+        {
+          name: 'color',
+          label: 'Colors',
+          type: 'select',
+          hasMany: true,
+          admin: {
+            condition: (_, siblingData) => siblingData?.type === 'color',
+          },
+          options: ['Black', 'White', 'Red', 'Blue', 'Green', 'Grey', 'Pink', 'Orange', 'Brown', 'Multi-Color'],
+        },
+        {
+          name: 'size',
+          label: 'Sizes',
+          type: 'select',
+          hasMany: true,
+          admin: {
+            condition: (_, siblingData) => siblingData?.type === 'size',
+          },
+          options: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+        },
+        {
+          name: 'gender',
+          label: 'Gender',
+          type: 'select',
+          hasMany: true,
+          admin: {
+            condition: (_, siblingData) => siblingData?.type === 'gender',
+          },
+          options: ['Men', 'Women', 'Unisex', 'Kids'],
+        },
+        {
+          name: 'onSale',
+          label: 'On Sale',
+          type: 'checkbox',
+          admin: {
+            condition: (_, siblingData) => siblingData?.type === 'onSale',
+          },
+        },
+      ],
+    },
   ],
 }

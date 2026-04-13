@@ -274,6 +274,18 @@ export interface Product {
   discountPercentage?: number | null;
   currency?: string | null;
   imageUrl?: string | null;
+  filters?:
+    | {
+        type: 'color' | 'size' | 'gender' | 'onSale';
+        color?:
+          | ('Black' | 'White' | 'Red' | 'Blue' | 'Green' | 'Grey' | 'Pink' | 'Orange' | 'Brown' | 'Multi-Color')[]
+          | null;
+        size?: ('XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL')[] | null;
+        gender?: ('Men' | 'Women' | 'Unisex' | 'Kids')[] | null;
+        onSale?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
   inventory?: number | null;
   enableVariants?: boolean | null;
   variantTypes?: (number | VariantType)[] | null;
@@ -1736,6 +1748,16 @@ export interface ProductsSelect<T extends boolean = true> {
   discountPercentage?: T;
   currency?: T;
   imageUrl?: T;
+  filters?:
+    | T
+    | {
+        type?: T;
+        color?: T;
+        size?: T;
+        gender?: T;
+        onSale?: T;
+        id?: T;
+      };
   inventory?: T;
   enableVariants?: T;
   variantTypes?: T;

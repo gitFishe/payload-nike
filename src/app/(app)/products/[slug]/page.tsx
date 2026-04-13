@@ -4,14 +4,18 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import React from 'react'
 import { ProductGallery } from '@/components/ProductGallery'
+import { BackLink } from '@/components/BackLink'
+import { AddToCart } from '@/components/AddToCart'
 
 type Args = {
   params: Promise<{
     slug: string
   }>
+  searchParams: Promise<{
+    [key:string]: string | string[] | undefined
+  }>
 }
 
-// 1. ШУКАЄМО ПО PRODUCT CODE (Артикулу), А НЕ ПО SLUG
 const queryProductBySlug = async ({ slug }: { slug: string }) => {
   const payload = await getPayload({ config: configPromise })
 
@@ -20,7 +24,6 @@ const queryProductBySlug = async ({ slug }: { slug: string }) => {
     limit: 1,
     where: {
       productCode: {
-        // <--- ТЕПЕР ШУКАЄМО ПРАВИЛЬНО
         equals: slug,
       },
     },
@@ -29,10 +32,16 @@ const queryProductBySlug = async ({ slug }: { slug: string }) => {
   return result.docs?.[0] || null
 }
 
-// 2. ГОЛОВНА СТОРІНКА ТОВАРУ
-export default async function ProductPage({ params }: Args) {
+const AddToCartHandler = () => {
+  console.log('added')
+}
+
+
+export default async function ProductPage({ params,searchParams }: Args) {
   const { slug } = await params
   const product = await queryProductBySlug({ slug })
+
+  const {id} = await searchParams
 
   if (!product) return notFound()
 
@@ -40,15 +49,11 @@ export default async function ProductPage({ params }: Args) {
     ? Array.from({ length: 5 }, () => product.imageUrl as string)
     : []
 
-
   return (
     <div className="container mx-auto px-4 pb-20 pt-12 bg-white">
-      <Link href="/shop" className="text-gray-500 hover:text-black mb-8 inline-block">
-        ← Всі товари
-      </Link>
+      <BackLink link={`/shop${id}`} />
 
       <div className="mx-auto max-w-280 flex justify-between gap-12">
-        {/* Галерея */}
         <div>
           {images.length > 0 ? (
             <ProductGallery images={images} alt={product.title ?? ''} />
@@ -59,7 +64,6 @@ export default async function ProductPage({ params }: Args) {
           )}
         </div>
 
-        {/* Інформація */}
         <div className="lg:w-1/2 flex flex-col">
           <div className="max-w-100 mb-2">
             <h1 className="text-xl font-medium font-black text-primary">{product.title}</h1>
@@ -76,9 +80,7 @@ export default async function ProductPage({ params }: Args) {
             ) : null}
           </div>
 
-          <button className="bg-black text-white py-4 px-8 rounded-full text-lg font-bold hover:bg-gray-800 transition-colors">
-            Додати в кошик
-          </button>
+          <AddToCart CartHandler={AddToCartHandler} />
         </div>
       </div>
     </div>

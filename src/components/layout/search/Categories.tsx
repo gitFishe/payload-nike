@@ -6,6 +6,7 @@ import React, { Suspense } from 'react'
 import { FilterList } from './filter'
 import { CategoryItem } from './Categories.client'
 import { sql } from '@payloadcms/db-postgres'
+import { Filters } from '@/components/layout/filter/Filters'
 
 async function CategoryList() {
   const payload = await getPayload({ config: configPromise })
@@ -18,7 +19,7 @@ async function CategoryList() {
   const categories = result.rows.map((r: any) => r.product_type)
 
   return (
-    <div>
+    <div className="border-b border-[#e5e5e5] pb-10">
       <h3 className="text-xs mb-2 text-neutral-500 dark:text-neutral-400">Category</h3>
 
       <ul>
@@ -55,6 +56,7 @@ export function Categories() {
       }
     >
       <CategoryList />
+      <Filters/>
     </Suspense>
   )
 }
