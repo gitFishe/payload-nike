@@ -56,7 +56,7 @@ export default {
           DEFAULT: 'hsl(var(--sale))',
         },
         background: 'hsl(var(--background))',
-        border: 'hsl(var(--border))',
+        // border: 'hsl(var(--border))',
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',

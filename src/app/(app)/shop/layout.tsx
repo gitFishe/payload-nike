@@ -7,7 +7,7 @@ import React, { Suspense } from 'react'
 
 export default function ShopLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="container flex pt-3.5 pb-4 text-primary bg-white">
+    <div className="container flex pt-3.5 pb-4 text-primary bg-white relative">
       {/*<Search className="mb-8" />*/}
 
       <div className="flex flex-col md:flex-row items-start justify-between md:gap-4">

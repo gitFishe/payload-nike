@@ -86,8 +86,20 @@
   /*    max-width: var(--breakpoint-2xl);*/
   /*  }*/
   /*}*/
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
 
+
+*:focus-visible {
+  outline:none;
+}
 :root {
   --background: oklch(100% 0 0deg);
   --foreground: oklch(14.5% 0 0deg);
@@ -95,9 +107,9 @@
   --card-foreground: oklch(14.5% 0 0deg);
   --popover: oklch(100% 0 0deg);
   --popover-foreground: oklch(14.5% 0 0deg);
-  --primary: oklch(20.5% 0 0deg);
+  --primary: #111111;
   --primary-foreground: oklch(98.5% 0 0deg);
-  --secondary: oklch(97% 0 0deg);
+  --secondary: #707072;
   --secondary-foreground: oklch(20.5% 0 0deg);
   --muted: oklch(97% 0 0deg);
   --muted-foreground: oklch(55.6% 0 0deg);
@@ -105,7 +117,7 @@
   --accent-foreground: oklch(20.5% 0 0deg);
   --destructive: oklch(57.7% 0.245 27.325deg);
   --destructive-foreground: oklch(57.7% 0.245 27.325deg);
-  --border: oklch(92.2% 0 0deg);
+  --light-gray: #e5e5e5;
   --input: oklch(92.2% 0 0deg);
   --ring: oklch(70.8% 0 0deg);
   --chart-1: oklch(64.6% 0.222 41.116deg);
@@ -125,6 +137,7 @@
   --success: oklch(78% 0.08 200deg);
   --warning: oklch(89% 0.1 75deg);
   --error: oklch(75% 0.15 25deg);
+  --border:#e5e5e5;
 }
 
 [data-theme='dark'] {
@@ -144,7 +157,8 @@
   --accent-foreground: oklch(98.5% 0 0deg);
   --destructive: oklch(39.6% 0.141 25.723deg);
   --destructive-foreground: oklch(63.7% 0.237 25.331deg);
-  --border: oklch(26.9% 0 0deg);
+  --light-gray: #f5f5f5;
+  --dark-gray:#cacacb;
   --input: oklch(26.9% 0 0deg);
   --ring: oklch(43.9% 0 0deg);
   --chart-1: oklch(48.8% 0.243 264.376deg);
@@ -206,11 +220,14 @@
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-error: var(--error);
+  --color-light-gray:var(--light-gray);
+  --color-dark-gray:var(--dark-gray);
+  --color-border:var(--border);
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
   body {
     @apply bg-background text-foreground min-h-[100vh] flex flex-col;
@@ -224,12 +241,6 @@ html {
 html[data-theme='dark'],
 html[data-theme='light'] {
   opacity: initial;
-}
-
-a,
-input,
-button {
-  @apply focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-50 dark:focus-visible:ring-neutral-600 dark:focus-visible:ring-offset-neutral-900;
 }
 
 .filter-arrow-left,

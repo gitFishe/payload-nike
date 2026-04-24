@@ -35,8 +35,6 @@ export const CustomSwiperBlock: React.FC<SwiperBlock> = ({ slides }) => {
 
   if (!mounted || !slides?.length) return null
 
-
-
   const toggleAutoPlay = () => {
     if(isPlaying) {
       swiperInstance.autoplay.pause()
@@ -47,7 +45,6 @@ export const CustomSwiperBlock: React.FC<SwiperBlock> = ({ slides }) => {
     setIsPlaying(!isPlaying)
     return
   }
-
 
   const onAutoplayTimeLeft = (s: any, time: number, progress: number) => {
     if (progressCircle.current) {

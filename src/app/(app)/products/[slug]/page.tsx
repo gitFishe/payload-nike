@@ -32,9 +32,6 @@ const queryProductBySlug = async ({ slug }: { slug: string }) => {
   return result.docs?.[0] || null
 }
 
-const AddToCartHandler = () => {
-  console.log('added')
-}
 
 
 export default async function ProductPage({ params,searchParams }: Args) {
@@ -80,7 +77,7 @@ export default async function ProductPage({ params,searchParams }: Args) {
             ) : null}
           </div>
 
-          <AddToCart CartHandler={AddToCartHandler} />
+          <AddToCart product={product} />
         </div>
       </div>
     </div>
