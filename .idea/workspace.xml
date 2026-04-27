@@ -4,42 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="851ba12a-6553-4555-82c4-b7f488a2d6c0" name="Changes" comment="feat: add Filters component and integrate filter functionality in product listing">
-      <change afterPath="$PROJECT_DIR$/public/icon/cart-question-mark.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(app)/cart/CartView.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(app)/cart/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/CartItem/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/CartPopup/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/icons/CartDelete.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/icons/CartMinus.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/icons/CartPlus.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/icons/CrossIcon.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/icons/SummaryArrow.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/icons/cartFavourite.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/providers/Cart/index.tsx" afterDir="false" />
+    <list default="true" id="851ba12a-6553-4555-82c4-b7f488a2d6c0" name="Changes" comment="feat: add cart-related components and enhance cart functionality with icons and context management">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/icon/search-icon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/icon/search-icon.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(app)/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(app)/products/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/products/[slug]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(app)/shop/api/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/shop/api/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(app)/shop/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/shop/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blocks/CustomSwiper/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/CustomSwiper/Component.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddToCart/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddToCart/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Cart/AddToCart.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Cart/CartModal.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Cart/CloseCart.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Cart/DeleteItemButton.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Cart/EditItemQuantityButton.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Cart/OpenCart.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Cart/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/providers/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/providers/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CartItem/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CartItem/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SearchBar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchBar/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/providers/Cart/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/providers/Cart/index.tsx" afterDir="false" />
     </list>
-    <list id="1933d2ca-499b-435b-8a8b-18888fd7be8b" name="Changes by lapkomo2018" comment="">
-      <change beforePath="$PROJECT_DIR$/src/app/(app)/shop/api/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/shop/api/route.ts" afterDir="false" />
-    </list>
+    <list id="1933d2ca-499b-435b-8a8b-18888fd7be8b" name="Changes by lapkomo2018" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,7 +22,7 @@
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="633" />
+    <option name="cachedIndexableFilesCount" value="638" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -83,21 +54,6 @@
     &quot;accountId&quot;: &quot;9cf2fc18-d28f-47aa-9a76-889228216187&quot;
   }
 }</component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/app/(app)/shop/api/route.ts">
-      <ranges>
-        <range start1="3" end1="3" start2="3" end2="4" changelist="1933d2ca-499b-435b-8a8b-18888fd7be8b" />
-        <range start1="5" end1="5" start2="6" end2="13" changelist="1933d2ca-499b-435b-8a8b-18888fd7be8b" />
-        <range start1="6" end1="7" start2="14" end2="19" changelist="1933d2ca-499b-435b-8a8b-18888fd7be8b" />
-        <range start1="8" end1="12" start2="20" end2="30" changelist="851ba12a-6553-4555-82c4-b7f488a2d6c0" />
-        <range start1="13" end1="22" start2="31" end2="32" changelist="1933d2ca-499b-435b-8a8b-18888fd7be8b" />
-        <range start1="24" end1="25" start2="34" end2="34" changelist="1933d2ca-499b-435b-8a8b-18888fd7be8b" />
-        <range start1="27" end1="27" start2="36" end2="37" changelist="1933d2ca-499b-435b-8a8b-18888fd7be8b" />
-        <range start1="29" end1="32" start2="39" end2="42" changelist="1933d2ca-499b-435b-8a8b-18888fd7be8b" />
-        <range start1="38" end1="38" start2="48" end2="49" changelist="1933d2ca-499b-435b-8a8b-18888fd7be8b" />
-      </ranges>
-    </file>
-  </component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -291,7 +247,9 @@
       <workItem from="1776768056797" duration="3726000" />
       <workItem from="1776858922655" duration="13392000" />
       <workItem from="1776943885245" duration="18362000" />
-      <workItem from="1777031306845" duration="13451000" />
+      <workItem from="1777031306845" duration="15631000" />
+      <workItem from="1777234393164" duration="599000" />
+      <workItem from="1777296139792" duration="6090000" />
     </task>
     <task id="LOCAL-00001" summary="feat: enhance header configuration with logo and nested navigation structure">
       <option name="closed" value="true" />
@@ -333,7 +291,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776114077683</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat: add cart-related components and enhance cart functionality with icons and context management">
+      <option name="closed" value="true" />
+      <created>1777067460528</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1777067460528</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -378,7 +344,8 @@
     <MESSAGE value="feat: update product model and import functionality with new fields and data handling" />
     <MESSAGE value="feat: refine ProductInfiniteList and route handling by improving image URL validation and removing debug logs" />
     <MESSAGE value="feat: add Filters component and integrate filter functionality in product listing" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add Filters component and integrate filter functionality in product listing" />
+    <MESSAGE value="feat: add cart-related components and enhance cart functionality with icons and context management" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add cart-related components and enhance cart functionality with icons and context management" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

@@ -48,7 +48,10 @@ export default function CartItem({ item }: { item: CartItemType }) {
             <span>name</span>
           </div>
           <div className="relative">
-            <button className="underline underline-offset-2 cursor-pointer relative z-20" onClick={popupHandler}>
+            <button
+              className="underline underline-offset-2 cursor-pointer relative z-20"
+              onClick={popupHandler}
+            >
               {item.size ?? 'M'}
             </button>
             <div className="absolute -bottom-4 left-15">
@@ -62,6 +65,9 @@ export default function CartItem({ item }: { item: CartItemType }) {
             </div>
             <div className="absolute -top-7 -left-[231px] rotate-[327deg] ">
               <img src="/media/cart-arrow-4.gif" />
+            </div>
+            <div className="absolute -top-25 -left-[109px] rotate-[60deg] h-12">
+              <img className='h-full' src="/media/cart-arrow-5.gif" />
             </div>
           </div>
         </div>
