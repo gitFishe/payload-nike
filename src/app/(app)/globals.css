@@ -311,3 +311,21 @@ html[data-theme='light'] {
 .filter-checkbox.is-toggled::after {
   transform: rotate(-49deg) scale(1);
 }
+
+
+@layer utilities {
+  .dividers > *:not(:last-child) {
+    position: relative;
+  }
+
+  .dividers > *:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 1px;
+    height: 0.75rem;
+    background: black;
+    transform: translateY(-50%);
+  }
+}

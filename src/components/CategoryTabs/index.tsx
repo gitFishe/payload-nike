@@ -12,13 +12,12 @@ async function List() {
     sort: 'title',
     select: {
       title: true,
-      slug: true,
     },
   })
 
   const categories = categoriesData.docs?.map((category) => {
     return {
-      href: `/shop/${category.slug}`,
+      href: `/shop/${category.id}`,
       title: category.title,
     }
   })

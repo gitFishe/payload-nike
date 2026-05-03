@@ -4,11 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="851ba12a-6553-4555-82c4-b7f488a2d6c0" name="Changes" comment="feat: add cart-related components and enhance cart functionality with icons and context management">
+    <list default="true" id="851ba12a-6553-4555-82c4-b7f488a2d6c0" name="Changes" comment="feat: implement SearchBar component with search functionality and enhance cart item display">
+      <change afterPath="$PROJECT_DIR$/src/components/icons/ConverseIcon.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/icons/JordanIcon.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/icons/ProfileIcon.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CartItem/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CartItem/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(app)/(account)/orders/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/(account)/orders/[id]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(app)/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blocks/Carousel/Component.client.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/Carousel/Component.client.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blocks/CustomSwiper/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/CustomSwiper/Component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blocks/ThreeItemGrid/Component.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks/ThreeItemGrid/Component.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CategoryTabs/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CategoryTabs/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Grid/Label.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Grid/Label.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/index.client.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/index.client.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SearchBar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchBar/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/providers/Cart/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/providers/Cart/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/checkout/CheckoutPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/checkout/CheckoutPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/globals/Header.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/globals/Header.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/payload-types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/payload-types.ts" afterDir="false" />
     </list>
     <list id="1933d2ca-499b-435b-8a8b-18888fd7be8b" name="Changes by lapkomo2018" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,7 +34,7 @@
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="638" />
+    <option name="cachedIndexableFilesCount" value="346" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -60,6 +72,9 @@
   </component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -249,7 +264,14 @@
       <workItem from="1776943885245" duration="18362000" />
       <workItem from="1777031306845" duration="15631000" />
       <workItem from="1777234393164" duration="599000" />
-      <workItem from="1777296139792" duration="6090000" />
+      <workItem from="1777296139792" duration="8371000" />
+      <workItem from="1777379540980" duration="5223000" />
+      <workItem from="1777417458969" duration="616000" />
+      <workItem from="1777465739839" duration="15131000" />
+      <workItem from="1777558324609" duration="9104000" />
+      <workItem from="1777638154513" duration="22620000" />
+      <workItem from="1777717050113" duration="8148000" />
+      <workItem from="1777815834685" duration="15638000" />
     </task>
     <task id="LOCAL-00001" summary="feat: enhance header configuration with logo and nested navigation structure">
       <option name="closed" value="true" />
@@ -299,7 +321,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777067460528</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="feat: implement SearchBar component with search functionality and enhance cart item display">
+      <option name="closed" value="true" />
+      <created>1777328499980</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1777328499980</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -345,7 +375,8 @@
     <MESSAGE value="feat: refine ProductInfiniteList and route handling by improving image URL validation and removing debug logs" />
     <MESSAGE value="feat: add Filters component and integrate filter functionality in product listing" />
     <MESSAGE value="feat: add cart-related components and enhance cart functionality with icons and context management" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add cart-related components and enhance cart functionality with icons and context management" />
+    <MESSAGE value="feat: implement SearchBar component with search functionality and enhance cart item display" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: implement SearchBar component with search functionality and enhance cart item display" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

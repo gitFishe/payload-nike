@@ -1,18 +1,11 @@
 'use client'
-import { CMSLink } from '@/components/Link'
-import { Cart } from '@/components/Cart'
-import { OpenCartButton } from '@/components/Cart/OpenCart'
-import Link from 'next/link'
 import React, { Suspense, useState } from 'react'
 
-import { MobileMenu } from './MobileMenu'
-import type { Header } from 'src/payload-types'
-
-import { LogoIcon } from '@/components/icons/logo'
-import { usePathname } from 'next/navigation'
-import { cn } from '@/utilities/cn'
-import Image from 'next/image'
 import { SearchBar } from '@/components/SearchBar'
+import Link from 'next/link'
+import { JordanIcon } from '@/components/icons/JordanIcon'
+import { ConverseIcon } from '@/components/icons/ConverseIcon'
+import { ProfileIcon } from '@/components/icons/ProfileIcon'
 
 type LinkItem = {
   id: string
@@ -34,25 +27,35 @@ type NavItem = {
   colLinks: ColumnGroup[]
 }
 
+type DropdownGroup = {
+  title?: {
+    label: string
+    url: string
+  }
+  links?: {
+    id: string
+    label: string
+    url: string
+  }[]
+}
+
 type Props = {
   header: {
-    logo: {
-      url: string
-      alt?: string
-    }
-    navItems: NavItem[]
-    searchBar:boolean
+    navItems?: NavItem[]
+    searchBar: boolean
+    userDropdown?: DropdownGroup
+    helpDropdown?: DropdownGroup
+    logo?:any
   }
 }
 
 
-export function HeaderClient({
-  header
-                             }: Props) {
+export function HeaderClient({ header }: Props) {
 
   const navItems = header.navItems || []
-  const logo = header.logo
-  const pathname = usePathname()
+  const userLinks = header.userDropdown?.links || []
+  const helpLinks = header.helpDropdown?.links || []
+  const [dropDownMenu, setDropDownMenu] = useState<'help' | 'profile' | null>(null)
 
   const renderColumnLinks = (column: ColumnGroup) => {
     return (
@@ -81,8 +84,94 @@ export function HeaderClient({
   const [openId, setOpenId] = useState<string | null>(null)
 
   return (
-    <div
-      className={`bg-white relative z-20
+    <div>
+      <div className="bg-light-gray w-full">
+        <div className="container">
+          <div className="flex justify-between items-center h-9 text-black">
+            <div className="flex gap-6">
+              <Link href="/" className="w-6 h-6">
+                <JordanIcon />
+              </Link>
+
+              <Link href="/" className="w-6 h-6">
+                <ConverseIcon />
+              </Link>
+            </div>
+
+            <div className="flex items-center text-xs h-full dividers font-semibold">
+              <div className="relative px-3">
+                <span>Find a Store</span>
+              </div>
+              <div
+                onMouseLeave={() => setDropDownMenu(null)}
+                onMouseEnter={() => setDropDownMenu('help')}
+                className="flex items-center cursor-pointer relative h-full group px-3"
+              >
+                <span className="text-xs group-hover:text-[#707072]">Help</span>
+                <div
+                  className={`absolute w-60.25 top-full -right-5 transition-[opacity,translate] duration-300 ease-out bg-white py-3 pr-4 pl-6 ${
+                    dropDownMenu === 'help'
+                      ? 'translate-y-0 z-50'
+                      : 'opacity-0 -translate-y-5 z-[-100]'
+                  }`}
+                >
+                  {header.helpDropdown?.title && (
+                    <Link
+                      href={header.helpDropdown.title.url || ''}
+                      className="text-base pb-3 block"
+                    >
+                      {header.helpDropdown.title.label}
+                    </Link>
+                  )}
+                  <ul className="text-xs leading-[150%]">
+                    {helpLinks.map((link: any) => (
+                      <li className="text-[#707072] pb-2 hover:text-black w-33.5" key={link.id}>
+                        <Link href={link.url}>{link.label}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div
+                onMouseLeave={() => setDropDownMenu(null)}
+                onMouseEnter={() => setDropDownMenu('profile')}
+                className="flex items-center cursor-pointer relative h-full group px-3"
+              >
+                <span className="group-hover:text-[#707072]">Hi,namespace</span>
+                <div className="w-6 h-6 text-black group-hover:text-[#707072] ml-1">
+                  <ProfileIcon />
+                </div>
+                <div
+                  className={`absolute w-60.25 top-full -right-5 transition-[opacity,translate] duration-300 ease-out bg-white py-3 pr-4 pl-6 ${
+                    dropDownMenu === 'profile'
+                      ? 'translate-y-0 z-50'
+                      : 'opacity-0 -translate-y-5 z-[-100]'
+                  }`}
+                >
+                  {header.userDropdown?.title && (
+                    <Link
+                      href={header.userDropdown.title.url || ''}
+                      className="text-base pb-3 block"
+                    >
+                      {header.userDropdown.title.label}
+                    </Link>
+                  )}
+                  <ul className="text-xs leading-[150%]">
+                    {userLinks.map((link: any) => (
+                      <li className="text-[#707072] pb-2 hover:text-black w-33.5" key={link.id}>
+                        <Link href={link.url}>{link.label}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className={`bg-white relative z-20
       before
       before:absolute
       before:top-0
@@ -98,46 +187,45 @@ export function HeaderClient({
       before:pointer-events-none
       ${openId ? 'before:opacity-20' : ''}
       `}
-    >
-      <div className="container">
-        <div className="flex h-15 justify-between items-center">
-          <div className="w-10 h-10 border">
-            {/* eslint-disable-next-line @next/next/no-img-element,jsx-a11y/alt-text */}
-            {/*<img src={logo.url || undefined} />*/}
-          </div>
+      >
+        <div className="container">
+          <div className="flex h-15 justify-between items-center">
+            <div className="w-10 h-10 border">
+              {/* eslint-disable-next-line @next/next/no-img-element,jsx-a11y/alt-text */}
+              {/*<img src={logo.url || undefined} />*/}
+            </div>
 
-          <ul className="flex absolute text-black h-15 w-full items-center justify-center left-0">
-            {navItems.map((nav) => (
-              <li
-                key={nav.id}
-                className="px-3 z-50 h-full"
-                onMouseEnter={() => setOpenId(nav.id)}
-                onMouseLeave={() => setOpenId(null)}
-                onFocus={() => setOpenId(nav.id)}
-                onBlur={() => setOpenId(null)}
-              >
-                <div className="h-full flex items-center">
-                  <a
-                    href="asdjhkas"
-                    className="cursor-pointer hover:underline underline-offset-4 decoration-2 font-medium"
-                  >
-                    {nav.tabName}
-                  </a>
-                </div>
-
-                {/*dropdown*/}
-                <div
-                  className={`absolute left-0 top-full w-full py-10 bg-white justify-center ${openId === nav.id ? 'flex' : 'hidden'}`}
+            <ul className="flex absolute text-black h-15 w-full items-center justify-center left-0">
+              {navItems.map((nav) => (
+                <li
+                  key={nav.id}
+                  className="px-3 z-50 h-full"
+                  onMouseEnter={() => setOpenId(nav.id)}
+                  onMouseLeave={() => setOpenId(null)}
+                  onFocus={() => setOpenId(nav.id)}
+                  onBlur={() => setOpenId(null)}
                 >
-                  {nav.colLinks?.map(renderColumnLinks)}
-                </div>
-              </li>
-            ))}
-          </ul>
+                  <div className="h-full flex items-center">
+                    <a
+                      href="asdjhkas"
+                      className="cursor-pointer hover:underline underline-offset-4 decoration-2 font-medium"
+                    >
+                      {nav.tabName}
+                    </a>
+                  </div>
 
-          {header.searchBar ? (
-            <SearchBar additionalClasses='flex z-50'/>
-          ) : null}
+                  {/*dropdown*/}
+                  <div
+                    className={`absolute left-0 top-full w-full py-10 bg-white justify-center ${openId === nav.id ? 'flex' : 'hidden'}`}
+                  >
+                    {nav.colLinks?.map(renderColumnLinks)}
+                  </div>
+                </li>
+              ))}
+            </ul>
+
+            {header.searchBar ? <SearchBar additionalClasses="z-50" /> : null}
+          </div>
         </div>
       </div>
     </div>

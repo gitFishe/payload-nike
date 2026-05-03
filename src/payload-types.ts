@@ -1919,6 +1919,32 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Header {
   id: number;
+  userDropdown: {
+    title: {
+      label: string;
+      url: string;
+    };
+    links?:
+      | {
+          label: string;
+          url: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  helpDropdown: {
+    title: {
+      label: string;
+      url: string;
+    };
+    links?:
+      | {
+          label: string;
+          url: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
   logo?: (number | null) | Media;
   navItems?:
     | {
@@ -1980,6 +2006,40 @@ export interface Footer {
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
+  userDropdown?:
+    | T
+    | {
+        title?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+            };
+        links?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+              id?: T;
+            };
+      };
+  helpDropdown?:
+    | T
+    | {
+        title?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+            };
+        links?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+              id?: T;
+            };
+      };
   logo?: T;
   navItems?:
     | T

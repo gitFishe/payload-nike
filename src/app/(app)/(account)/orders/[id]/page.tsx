@@ -139,7 +139,7 @@ export default async function Order({ params, searchParams }: PageProps) {
 
           <div className="">
             <p className="font-mono uppercase text-primary/50 mb-1 text-sm">Total</p>
-            {order.amount && <Price className="text-lg" amount={order.amount} />}
+            {order.amount && <Price className="text-lg" currentPrice={order.amount} />}
           </div>
 
           {order.status && (

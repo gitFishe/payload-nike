@@ -7,6 +7,54 @@ export const Header: GlobalConfig = {
   },
   fields: [
     {
+      name: 'userDropdown',
+      type: 'group',
+      label: 'User Menu',
+      fields: [
+        {
+          name: 'title',
+          type: 'group',
+          label: 'Title (heading link)',
+          fields: [
+            { name: 'label', type: 'text', required: true },
+            { name: 'url', type: 'text', required: true },
+          ],
+        },
+        {
+          name: 'links',
+          type: 'array',
+          fields: [
+            { name: 'label', type: 'text', required: true },
+            { name: 'url', type: 'text', required: true },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'helpDropdown',
+      type: 'group',
+      label: 'Help Menu',
+      fields: [
+        {
+          name: 'title',
+          type: 'group',
+          label: 'Title (heading link)',
+          fields: [
+            { name: 'label', type: 'text', required: true },
+            { name: 'url', type: 'text', required: true },
+          ],
+        },
+        {
+          name: 'links',
+          type: 'array',
+          fields: [
+            { name: 'label', type: 'text', required: true },
+            { name: 'url', type: 'text', required: true },
+          ],
+        },
+      ],
+    },
+    {
       name: 'logo',
       type: 'upload',
       relationTo: 'media',
@@ -38,8 +86,8 @@ export const Header: GlobalConfig = {
               name: 'col',
               type: 'array',
               label: {
-                singular:'Row',
-                plural:'Rows',
+                singular: 'Row',
+                plural: 'Rows',
               },
               fields: [
                 {
@@ -58,9 +106,9 @@ export const Header: GlobalConfig = {
               ],
             },
             {
-              name:'showCol2',
-              type:'checkbox',
-              label:'Show Second Column Links',
+              name: 'showCol2',
+              type: 'checkbox',
+              label: 'Show Second Column Links',
               defaultValue: false,
             },
             {
@@ -91,9 +139,9 @@ export const Header: GlobalConfig = {
       ],
     },
     {
-      name:'searchBar',
-      type:'checkbox',
-      defaultValue:true,
-    }
+      name: 'searchBar',
+      type: 'checkbox',
+      defaultValue: true,
+    },
   ],
 }

@@ -1,6 +1,7 @@
 'use client'
 
 import type { Swiper as SwiperBlock } from '@/payload-types'
+import type { Swiper as SwiperType } from 'swiper'
 
 import Image from 'next/image'
 import { Media } from '@/components/Media'
@@ -20,11 +21,11 @@ export const CustomSwiperBlock: React.FC<SwiperBlock> = ({ slides }) => {
 
   const handlePrev = () => {
     if(isAnimating) return
-    swiperInstance.slidePrev()
+    swiperInstance?.slidePrev()
   }
   const handleNext = () => {
     if (isAnimating) return
-    swiperInstance.slideNext()
+    swiperInstance?.slideNext()
   }
 
   const [mounted, setMounted] = React.useState(false)
@@ -37,9 +38,9 @@ export const CustomSwiperBlock: React.FC<SwiperBlock> = ({ slides }) => {
 
   const toggleAutoPlay = () => {
     if(isPlaying) {
-      swiperInstance.autoplay.pause()
+      swiperInstance?.autoplay.pause()
     } else {
-      swiperInstance.autoplay.resume()
+      swiperInstance?.autoplay.resume()
     }
 
     setIsPlaying(!isPlaying)
