@@ -1,6 +1,7 @@
 'use client'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { FormEvent, useEffect, useState } from 'react'
+import { useLockScroll } from '@/hooks/useLockScroll'
 
 export const SearchBar = ({ additionalClasses }: { additionalClasses?: string }) => {
   const params = useSearchParams()
@@ -11,9 +12,10 @@ export const SearchBar = ({ additionalClasses }: { additionalClasses?: string })
   const [recent, setRecent] = useState<string[]>([])
 
 
+  useLockScroll(phase === 2)
+
   const handleFocus = () => {
     if (phase !== 0) return
-
     setRecent(readSearchHistory())
     setPhase(1)
     requestAnimationFrame(() => requestAnimationFrame(() => setPhase(2)))
@@ -74,10 +76,10 @@ export const SearchBar = ({ additionalClasses }: { additionalClasses?: string })
 
   const wrapperPos =
     phase === 0
-      ? ''
+      ? 'hidden'
       : phase === 1
-        ? 'absolute left-20 top-10 bg-white w-full h-100'
-        : 'absolute left-0 top-0 bg-white w-full h-100'
+        ? 'fixed inset-x-0 top-0 translate-x-20 translate-y-10 bg-white w-full h-100'
+        : 'fixed inset-x-0 top-0 translate-x-0 translate-y-0 bg-white w-full h-100'
 
 
   const formPos =
@@ -85,7 +87,7 @@ export const SearchBar = ({ additionalClasses }: { additionalClasses?: string })
       ? 'translate-x-0 translate-y-0 w-42'
       : phase === 1
         ? 'translate-x-100 translate-y-10 w-42'
-        : 'left-1/2 translate-y-3 w-120'
+        : 'translate-x-0 translate-y-3 w-[1746px]'
 
   const transitionCls =
     phase === 1
@@ -95,10 +97,13 @@ export const SearchBar = ({ additionalClasses }: { additionalClasses?: string })
         : 'transition-[width] duration-700 ease-out'
 
   return (
-    <div className={`${additionalClasses ?? ''}`}>
+    <div
+      onClick={handleFocus}
+      className={`${additionalClasses ?? ''}`}>
+      {/*<div onClick={handleBlur} className='absolute bg-gray-500 opacity-30 top-0 left-0 w-full h-screen'/>*/}
       <form
         onSubmit={formHandler}
-        className={`h-9 relative bg-[#f5f5f5] z-50 rounded-3xl flex pr-1 ${transitionCls} ${formPos}`}
+        className={`h-9 relative will-change-[width] bg-[#f5f5f5] z-50 rounded-3xl flex pr-1 ${transitionCls} ${formPos}`}
       >
         <button
           type="submit"
@@ -110,8 +115,6 @@ export const SearchBar = ({ additionalClasses }: { additionalClasses?: string })
           <input
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
             placeholder="Search"
             className="placeholder:text-[#707483] text-black w-full h-full focus:outline-none focus:ring-0 focus:border-transparent"
           />
@@ -123,16 +126,20 @@ export const SearchBar = ({ additionalClasses }: { additionalClasses?: string })
           <img src="/icon/search-icon.svg" />
         </button>
       </form>
-      {/*<div className={`transition-all flex duration-700 ease-out ${wrapperPos}`}>*/}
-      {/*  <div className='max-w-250 margin-x-auto pt-45'>*/}
-      {/*    <h4>Recent Searches</h4>*/}
-      {/*    <div>*/}
-      {/*      {recent.map((item, i) => (*/}
-      {/*        <div key={i}>{item}</div>*/}
-      {/*      ))}*/}
-      {/*    </div>*/}
-      {/*  </div>*/}
-      {/*</div>*/}
+      <div
+        className={`transition-all flex duration-700 ease-out ${wrapperPos} text-black w-full`}
+      >
+        <div className="container">
+          <div className="max-w-250 margin-x-auto pt-45">
+            <h4>Recent Searches</h4>
+            <div>
+              {recent.map((item, i) => (
+                <div key={i}>{item}</div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

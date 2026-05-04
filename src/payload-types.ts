@@ -539,6 +539,7 @@ export interface Page {
     | FormBlock
     | Swiper
     | BigImgs
+    | SmallCategories
   )[];
   meta?: {
     title?: string | null;
@@ -1068,6 +1069,44 @@ export interface BigImgs {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SmallCategories".
+ */
+export interface SmallCategories {
+  blocks: {
+    img: number | Media;
+    btnLabel: string;
+    link?: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?: {
+        relationTo: 'pages';
+        value: number | Page;
+      } | null;
+      url?: string | null;
+    };
+    tabLinks?:
+      | {
+          LinkName: string;
+          link: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?: {
+              relationTo: 'pages';
+              value: number | Page;
+            } | null;
+            url?: string | null;
+          };
+          id?: string | null;
+        }[]
+      | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'smallCategories';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "articles".
  */
 export interface Article {
@@ -1290,6 +1329,7 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         customSwiperBlock?: T | SwiperSelect<T>;
         bigImgs?: T | BigImgsSelect<T>;
+        smallCategories?: T | SmallCategoriesSelect<T>;
       };
   meta?:
     | T
@@ -1480,6 +1520,43 @@ export interface BigImgsSelect<T extends boolean = true> {
         title?: T;
         description?: T;
         btn?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SmallCategories_select".
+ */
+export interface SmallCategoriesSelect<T extends boolean = true> {
+  blocks?:
+    | T
+    | {
+        img?: T;
+        btnLabel?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+            };
+        tabLinks?:
+          | T
+          | {
+              LinkName?: T;
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                  };
+              id?: T;
+            };
         id?: T;
       };
   id?: T;

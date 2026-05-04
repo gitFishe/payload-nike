@@ -8,6 +8,8 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { ThreeItemGridBlock } from '@/blocks/ThreeItemGrid/Component'
 import { CustomSwiperBlock } from '@/blocks/CustomSwiper/Component'
 import { BigImgsBlock } from '@/blocks/BigImgs/Component'
+import { SmallCategoriesBlock } from '@/blocks/SmallCategories/SmallCategories'
+
 import { toKebabCase } from '@/utilities/toKebabCase'
 import React, { Fragment } from 'react'
 
@@ -24,6 +26,7 @@ const blockComponents = {
   threeItemGrid: ThreeItemGridBlock,
   customSwiperBlock: CustomSwiperBlock,
   bigImgs: BigImgsBlock,
+  smallCategories: SmallCategoriesBlock,
 }
 
 export const RenderBlocks: React.FC<{

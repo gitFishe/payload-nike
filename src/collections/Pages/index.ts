@@ -12,6 +12,7 @@ import { FormBlock } from '@/blocks/Form/config'
 import { MediaBlock } from '@/blocks/MediaBlock/config'
 import { CustomSwiperBlock } from '@/blocks/CustomSwiper/config'
 import { BigImgsBlock } from '@/blocks/BigImgs/config'
+import { SmallCategoriesBlock } from '@/blocks/SmallCategories/config'
 
 
 import { hero } from '@/fields/hero'
@@ -109,6 +110,7 @@ export const Pages: CollectionConfig = {
                 FormBlock,
                 CustomSwiperBlock,
                 BigImgsBlock,
+                SmallCategoriesBlock,
               ],
               required: true,
             },
