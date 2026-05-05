@@ -33,7 +33,6 @@ const queryProductBySlug = async ({ slug }: { slug: string }) => {
 }
 
 
-
 export default async function ProductPage({ params,searchParams }: Args) {
   const { slug } = await params
   const product = await queryProductBySlug({ slug })

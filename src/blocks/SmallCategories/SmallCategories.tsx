@@ -75,7 +75,7 @@ export const SmallCategoriesBlock = (data: SmallCategories) => {
                             style={{
                               transform: isActive === i ? 'translateX(0)' : 'translateX(-100%)',
                               opacity: isActive === i ? 1 : 0,
-                              transition: `transform 600ms ${250 + timing}ms, opacity 950ms ${300 + timing + 200}ms`,
+                              transition: `transform 600ms ${250 + timing}ms, opacity 950ms ${200 + timing}ms`,
                             }}
                             className="px-7 py-2 pt-3"
                           >

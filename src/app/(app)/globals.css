@@ -329,3 +329,19 @@ html[data-theme='light'] {
     transform: translateY(-50%);
   }
 }
+
+@keyframes innerOpacity {
+  from { opacity: 0;}
+  to   { opacity: 1;}
+}
+
+@keyframes containerSlideIn {
+  to {
+    margin-left:0;
+    opacity: 1
+  }
+}
+body {
+  background-color:white;
+  color:var(--primary);
+}
