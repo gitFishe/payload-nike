@@ -25,7 +25,7 @@ export default function CartView() {
       </div>
       <aside className="max-w-1/3 w-full">
         <h2 className="text-2xl mb-6">Summary</h2>
-        <div className="">
+        <div>
           <div className="group">
             <button
               onClick={() => setOpen((v) => !v)}

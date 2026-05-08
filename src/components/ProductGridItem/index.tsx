@@ -22,13 +22,10 @@ export const ProductGridItem: React.FC<Props> = ({ product }) => {
     <Link className="relative w-1/3 px-2" href={`/products/${product.productCode}`}>
       {imageUrl && imageUrl.startsWith('http') ? (
         <Media
-          className={clsx('relative aspect-square object-cover bg-primary-foreground')}
-          height={80}
-          imgClassName={clsx('h-full w-full object-cover', {
-            'transition duration-300 ease-in-out group-hover:scale-102': true,
-          })}
+          className={clsx('relative aspect-square bg-primary-foreground')}
+          imgClassName={clsx('object-cover transition duration-300 ease-in-out group-hover:scale-102')}
+          fill
           src={imageUrl}
-          width={80}
         />
       ) : (
         <div>
@@ -40,15 +37,16 @@ export const ProductGridItem: React.FC<Props> = ({ product }) => {
         <div>
           <span>{title}</span>
         </div>
-        <div className='text-base text-secondary'>
+        <div className="text-base text-secondary">
           <span>{subTitle}</span>
         </div>
 
         <div className="">
-          <Price currentPrice={currentPrice || 0}
-                 initialPrice={initialPrice || null}
-                 discountPercentage={discountPercentage || null}
-                 currency={currency || 'USD'}
+          <Price
+            currentPrice={currentPrice || 0}
+            initialPrice={initialPrice || null}
+            discountPercentage={discountPercentage || null}
+            currency={currency || 'USD'}
           />
         </div>
       </div>

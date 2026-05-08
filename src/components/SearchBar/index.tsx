@@ -22,6 +22,8 @@ export const SearchBar = ({ additionalClasses }: { additionalClasses?: string })
   }
 
   const handleBlur = () => setPhase(0)
+
+
   const formHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 

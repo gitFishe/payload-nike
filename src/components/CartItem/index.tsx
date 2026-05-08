@@ -72,8 +72,8 @@ export default function CartItem({ item }: { item: CartItemType }) {
           </div>
         </div>
       </div>
-      <div className=" mt-4 flex">
-        <div className="border-[#e5e5e5] border w-fit rounded-full overflow-hidden flex items-center">
+      <div className="mt-4 flex relative z-10">
+        <div className="border-[#e5e5e5] border w-fit rounded-full overflow-hidden flex items-center bg-white">
           <button
             className="h-10 w-10 p-2 rounded-full cursor-pointer hover:bg-gray-200"
             onClick={() => updateQty(item.id, item.qty - 1)}

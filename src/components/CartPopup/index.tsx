@@ -13,7 +13,7 @@ type CartPopupProps = {
   onUpdate: (size:number) => void
 }
 
-export const CartPopup = ({isShown, onClose,item, onUpdate}:CartPopupProps) => {
+export const CartPopup = ({isShown, onClose, item, onUpdate}:CartPopupProps) => {
 
 
   const images = item.imageUrl ? Array(5).fill(item.imageUrl) : []
@@ -99,8 +99,6 @@ export const CartPopup = ({isShown, onClose,item, onUpdate}:CartPopupProps) => {
             </div>
 
             <div className="flex overflow-y-auto  flex-wrap mx-9 gap-1 flex-1 min-h-0 no-scrollbar">
-
-
               {Array.from({length:17}, (_, idx) => {
                 const size = 7 + idx * 0.5
                 return (

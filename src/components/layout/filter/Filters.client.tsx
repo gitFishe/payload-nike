@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+import { AnimatedArrow } from '@/components/icons/AnimatedArrow'
 
 export function FiltersClient({options}: {options:Record<string,string[]>}) {
 
@@ -42,12 +43,8 @@ export function FiltersClient({options}: {options:Record<string,string[]>}) {
             className="h-13.5 py-3 relative font-medium cursor-pointer select-none"
           >
             <span>{type}</span>
-            <div
-              className={`absolute right-0 top-1/2 w-3.5 h-0.5 -translate-y-1/2 ${isOpen.has(type) ? 'filter-arrow-open' : ''}`}
-            >
-              <span className="filter-arrow-left" />
-              <span className="filter-arrow-right" />
-            </div>
+
+            <AnimatedArrow expanded={isOpen.has(type)} />
           </div>
 
           <div
