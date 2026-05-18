@@ -7,7 +7,7 @@ import { CartDelete } from '@/components/icons/CartDelete'
 import { CartPlus } from '@/components/icons/CartPlus'
 import { CartFavourite } from '@/components/icons/cartFavourite'
 import { CrossIcon } from '@/components/icons/CrossIcon'
-import { CartPopup } from '@/components/CartPopup'
+import { CartPopup } from '@/components/CustomPopup/CartPopup'
 
 export type CartItemType = {
   title: string

@@ -4,7 +4,7 @@ export type SearchParams = { [key: string]: string | string[] | undefined }
 
 const RESERVED = new Set(['q', 'sort', 'category', 'page', 'limit'])
 
-const DEFAULT_SORT = '-createdAt'
+const DEFAULT_SORT = '-id'
 const DEFAULT_LIMIT = 12
 
 export type ProductQuery = {

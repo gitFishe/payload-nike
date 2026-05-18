@@ -84,5 +84,11 @@ export const Users: CollectionConfig = {
         defaultColumns: ['id'],
       },
     },
+    {
+      name:'interests',
+      type:'relationship',
+      relationTo:'interests',
+      hasMany:true,
+    }
   ],
 }

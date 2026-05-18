@@ -77,6 +77,7 @@ export interface Config {
     categories: Category;
     media: Media;
     articles: Article;
+    interests: Interest;
     forms: Form;
     'form-submissions': FormSubmission;
     addresses: Address;
@@ -111,6 +112,7 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
+    interests: InterestsSelect<false> | InterestsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     addresses: AddressesSelect<false> | AddressesSelect<true>;
@@ -204,6 +206,7 @@ export interface User {
     hasNextPage?: boolean;
     totalDocs?: number;
   };
+  interests?: (number | Interest)[] | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -478,6 +481,18 @@ export interface Address {
     | 'SE'
     | 'CH';
   phone?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "interests".
+ */
+export interface Interest {
+  id: number;
+  name: string;
+  link: string;
+  category: 'product' | 'athlete' | 'sport' | 'team' | 'city';
   updatedAt: string;
   createdAt: string;
 }
@@ -1178,6 +1193,10 @@ export interface PayloadLockedDocument {
         value: number | Article;
       } | null)
     | ({
+        relationTo: 'interests';
+        value: number | Interest;
+      } | null)
+    | ({
         relationTo: 'forms';
         value: number | Form;
       } | null)
@@ -1269,6 +1288,7 @@ export interface UsersSelect<T extends boolean = true> {
   orders?: T;
   cart?: T;
   addresses?: T;
+  interests?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -1597,6 +1617,17 @@ export interface MediaSelect<T extends boolean = true> {
 export interface ArticlesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "interests_select".
+ */
+export interface InterestsSelect<T extends boolean = true> {
+  name?: T;
+  link?: T;
+  category?: T;
   updatedAt?: T;
   createdAt?: T;
 }
