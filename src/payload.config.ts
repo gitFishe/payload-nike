@@ -23,6 +23,7 @@ import { Footer } from '@/globals/Footer'
 import { Header } from '@/globals/Header'
 import { plugins } from './plugins'
 import {Articles} from "@/collections/Articles";
+import { ProfileNav } from '@/globals/ProfileNav'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -82,7 +83,7 @@ export default buildConfig({
   }),
   //email: nodemailerAdapter(),
   endpoints: [],
-  globals: [Header, Footer],
+  globals: [Header, Footer, ProfileNav],
   plugins,
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

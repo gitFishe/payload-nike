@@ -12,7 +12,7 @@ export const ProfileView = ({user}:Props) => {
     { name: 'Profile', link: '/shop' },
     { name: 'Orders', link: '/shop' },
     { name: 'Favorites', link: '/shop' },
-    { name: 'Settings', link: '/settings' },
+    { name: 'Settings', link: '/profile/settings' },
   ]
 
   console.log(user.interests)

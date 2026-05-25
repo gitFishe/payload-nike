@@ -1,125 +1,116 @@
 import { BasePopup } from '@/components/CustomPopup'
-import { useEffect, useState } from 'react'
-import { CartItemType } from '@/components/CartItem'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { useEffect, useMemo, useState } from 'react'
 
-import type { Swiper as SwiperType } from 'swiper'
-import { SummaryArrow } from '@/components/icons/SummaryArrow'
+import { CustomInput } from '@/components/CustomInput'
+import { CrossIcon } from '@/components/icons/CrossIcon'
+import { CustomBtnSmall } from '@/components/CustomBtnSmall'
 
 type CartPopupProps = {
   isShown: boolean
   onClose: () => void
-  item: CartItemType
-  onUpdate: (size: number) => void
 }
 
-export const PasswordPopup = ({ isShown, onClose, item, onUpdate }: CartPopupProps) => {
-  const images = item.imageUrl ? Array(5).fill(item.imageUrl) : []
+interface validTypes {
+  curPass:boolean
+  minimum8: boolean
+  normalText: boolean
+  doubt: boolean
+}
 
-  const [swiper, setSwiper] = useState<SwiperType | null>(null)
-  const [isBeginning, setIsBeginning] = useState(false)
-  const [isEnd, setIsEnd] = useState(true)
 
-  const [selectedSize, setSelectedSize] = useState(7)
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/
 
-  const updateSizeHandler = (size: number) => {
-    if (selectedSize !== size) {
-      setSelectedSize(size)
-    }
+export const PasswordPopup = ({ isShown, onClose }: CartPopupProps) => {
+
+
+  const [currentPassword, setCurrentPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+  const [repeatPassword, setRepeatPassword] = useState('')
+
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const validation: validTypes = {
+
+      curPass: Boolean(currentPassword),
+      minimum8: newPassword.length >= 8,
+      normalText: passwordRegex.test(newPassword),
+      doubt: newPassword === repeatPassword,
   }
 
-  useEffect(() => {
-    if (!isShown) return
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.body.style.overflow = ''
+
+  const isFormValid = Object.values(validation).every(Boolean)
+
+  const handleClick = ( ) => {
+    setIsSubmitting(true)
+
+    if(isFormValid) {
+      console.log([currentPassword,newPassword,repeatPassword])
+    } else {
+
     }
-  }, [isShown])
+
+    setIsSubmitting(false)
+  }
 
   return (
     <BasePopup
       isShown={isShown}
       onClose={onClose}
-      className="max-w-232 max-h-130 max-h-[80%] w-full"
+      className="max-w-134 max-h-[80%] w-full p-12 rounded-[24px]"
     >
-        <div className="flex items-stretch h-130">
-          <div className="shrink-0 w-1/2 relative">
-            <Swiper
-              allowTouchMove={false}
-              onSwiper={(s) => {
-                setSwiper(s)
-                setIsBeginning(s.isBeginning)
-                setIsEnd(s.isEnd)
-              }}
-              onSlideChange={(s) => {
-                setIsBeginning(s.isBeginning)
-                setIsEnd(s.isEnd)
-              }}
-              className="h-full w-full"
-            >
-              {images.map((src, i) => (
-                <SwiperSlide key={i}>
-                  <img className="h-full w-full object-cover" src={src} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-            {!isBeginning && (
-              <button
-                onClick={() => swiper?.slidePrev()}
-                className="w-12 h-12 z-50 bg-border absolute right-24 top-[calc(100%-72px)] flex items-center justify-center rounded-full cursor-pointer hover:bg-dark-gray"
-              >
-                <SummaryArrow styles="rotate-90" />
-              </button>
-            )}
-            {/*{!isEnd && (*/}
-            <button
-              onClick={() => swiper?.slideNext()}
-              className="w-12 h-12 z-50 rotate-270 bg-border absolute right-6 top-[calc(100%-72px)] flex items-center justify-center rounded-full cursor-pointer hover:bg-dark-gray"
-            >
-              <SummaryArrow />
-            </button>
-            {/*)}*/}
+      <div className="flex flex-col items-stretch">
+        <h1 className="text-3xl font-medium pt-1 pb-6">Edit Password</h1>
+        <div>
+          <CustomInput
+            customStyles="pt-1 pb-7"
+            onChange={setCurrentPassword}
+            value={currentPassword}
+            label="Current Password*"
+            errorMessage="Please enter your current password."
+          />
+          <CustomInput
+            customStyles="pt-1 pb-6"
+            onChange={setNewPassword}
+            value={newPassword}
+            label="New Password*"
+            errorMessage="Please enter a valid new password."
+            isError={!(validation.minimum8 && validation.normalText && newPassword.length > 0)}
+          />
+          <CustomInput
+            customStyles="pt-1 pb-7"
+            onChange={setRepeatPassword}
+            value={repeatPassword}
+            label="Confirm New Password*"
+            errorMessage="Password does not match."
+            isError={!validation.doubt && repeatPassword.length > 0}
+          />
+        </div>
+        <div>
+          <div className="relative pl-7">
+            <span>Password requirements:</span>
           </div>
-          <div className="relative w-1/2 shrink-0 flex flex-col min-h-0 h-full">
-            <div className="p-9 relative flex flex-col shrink-0">
-              <h2 className="font-semibold text-xl">{item.title}</h2>
-              <span>Lorem ipsum dolor sit.</span>
-              <span className="pt-2">${item.price}</span>
-            </div>
-
-            <div className="flex overflow-y-auto  flex-wrap mx-9 gap-1 flex-1 min-h-0 no-scrollbar">
-              {Array.from({ length: 17 }, (_, idx) => {
-                const size = 7 + idx * 0.5
-                return (
-                  <div
-                    onClick={() => updateSizeHandler(size)}
-                    key={idx}
-                    className={`w-[calc((100%-8px)/3)] border border-[#cacacb] rounded-[4px] flex justify-center cursor-pointer items-center h-12 ${size === selectedSize ? 'border border-black' : ''}`}
-                  >
-                    <span>
-                      M {size} / W {size + 1.5}
-                    </span>
-                  </div>
-                )
-              })}
-            </div>
-
-            <div className="border-t px-9 py-6 border-border flex justify-between items-center shrink-0">
-              <a className="underline cursor-pointer text-sm underline-offset-4 decoration-2 font-semibold">
-                View Full Product
-              </a>
-              <button
-                onClick={() => {
-                  onUpdate(selectedSize)
-                  onClose()
-                }}
-                className="bg-black text-white rounded-full px-6 py-3 cursor-pointer hover:bg-[#707072]"
-              >
-                <span>Update Product</span>
-              </button>
-            </div>
+          <div
+            className={`relative pl-7 ${validation.minimum8 || validation.normalText ? '' : 'border-[#d30005]'}`}
+          >
+            {validation.minimum8 ? '' : <CrossIcon styles="absolute left-0" />}
+            <span className={validation.minimum8 ? 'text-[#007d48]' : ''}>
+              Minimum of 8 characters
+            </span>
+          </div>
+          <div className="relative pl-7">
+            {validation.normalText ? '' : <CrossIcon styles="absolute left-0" />}
+            <span className={validation.normalText ? 'text-[#007d48]' : ''}>
+              Uppercase, lowercase letters, and one number
+            </span>
           </div>
         </div>
+        <CustomBtnSmall
+          isDisabled={!isFormValid || !isSubmitting}
+          click={handleClick}
+          label="Save"
+          styles="ml-auto mt-10 rounded-full px-4 py-1"
+        />
+      </div>
     </BasePopup>
   )
 }

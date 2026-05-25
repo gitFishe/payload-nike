@@ -4,23 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="851ba12a-6553-4555-82c4-b7f488a2d6c0" name="Changes" comment=" Extract findProducts helper as the single source of product&#10;  queries used by both the SSR page and the load-more API route.&#10;  Replace stateful filter-reset effects in ProductInfiniteList with&#10;  a key-based remount driven by searchParams, and build it on top&#10;  of the generic InfiniteList component.">
-      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/Interests/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/ProfileView.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/settings/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/collections/Interests/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/CustomInput/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/CustomPopup/PasswordPopup/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/CustomPopup/index.tsx" afterDir="false" />
+    <list default="true" id="851ba12a-6553-4555-82c4-b7f488a2d6c0" name="Changes" comment="feat: Start changing Popup system, add Interests collection and integrate with user profile, update sorting mechanism in ProductsHeader">
+      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/settings/_components/SettingsSidebar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/settings/communication-preferences/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/settings/delivery-addresses/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/settings/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/settings/linked-accounts/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/settings/payment-methods/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/settings/privacy/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/settings/profile-visibility/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/settings/shop-preferences/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/CustomBtnSmall/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/CustomPopup/BillingPopup/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/globals/ProfileNav.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/(app)/shop/buildProductQuery.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/shop/buildProductQuery.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/collections/Users/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/collections/Users/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CartItem/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CartItem/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CartPopup/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomPopup/CartPopup/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footer/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ProductGridItem/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProductGridItem/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ProductsHeader/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProductsHeader/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(app)/profile/ProfileView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/profile/ProfileView.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(app)/profile/settings/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/profile/settings/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CustomInput/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomInput/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CustomPopup/CartPopup/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomPopup/CartPopup/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CustomPopup/PasswordPopup/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomPopup/PasswordPopup/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/payload-types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/payload-types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/payload.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/payload.config.ts" afterDir="false" />
     </list>
@@ -37,7 +39,7 @@
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="366" />
+    <option name="cachedIndexableFilesCount" value="376" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -299,7 +301,15 @@
       <workItem from="1778510374865" duration="1742000" />
       <workItem from="1778963089505" duration="4403000" />
       <workItem from="1779018187788" duration="11278000" />
-      <workItem from="1779111354198" duration="11394000" />
+      <workItem from="1779111354198" duration="18043000" />
+      <workItem from="1779191537979" duration="15082000" />
+      <workItem from="1779282593757" duration="11695000" />
+      <workItem from="1779371255663" duration="7773000" />
+      <workItem from="1779472592633" duration="725000" />
+      <workItem from="1779534785409" duration="10137000" />
+      <workItem from="1779636992463" duration="1729000" />
+      <workItem from="1779641878287" duration="12390000" />
+      <workItem from="1779705385321" duration="15811000" />
     </task>
     <task id="LOCAL-00001" summary="feat: enhance header configuration with logo and nested navigation structure">
       <option name="closed" value="true" />
@@ -389,7 +399,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778279524832</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="feat: Start changing Popup system, add Interests collection and integrate with user profile, update sorting mechanism in ProductsHeader">
+      <option name="closed" value="true" />
+      <created>1779128516426</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1779128516426</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -440,7 +458,8 @@
     <MESSAGE value="feat: add SmallCategories block and useLockScroll hook, enhance SearchBar component with recent searches functionality" />
     <MESSAGE value="feat: add animations for category display and enhance layout styling" />
     <MESSAGE value=" Extract findProducts helper as the single source of product&#10;  queries used by both the SSR page and the load-more API route.&#10;  Replace stateful filter-reset effects in ProductInfiniteList with&#10;  a key-based remount driven by searchParams, and build it on top&#10;  of the generic InfiniteList component." />
-    <option name="LAST_COMMIT_MESSAGE" value=" Extract findProducts helper as the single source of product&#10;  queries used by both the SSR page and the load-more API route.&#10;  Replace stateful filter-reset effects in ProductInfiniteList with&#10;  a key-based remount driven by searchParams, and build it on top&#10;  of the generic InfiniteList component." />
+    <MESSAGE value="feat: Start changing Popup system, add Interests collection and integrate with user profile, update sorting mechanism in ProductsHeader" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Start changing Popup system, add Interests collection and integrate with user profile, update sorting mechanism in ProductsHeader" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

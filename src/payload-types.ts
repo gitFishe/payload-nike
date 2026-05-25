@@ -135,10 +135,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    'profile-nav': ProfileNav;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    'profile-nav': ProfileNavSelect<false> | ProfileNavSelect<true>;
   };
   locale: null;
   user: User & {
@@ -2111,6 +2113,24 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "profile-nav".
+ */
+export interface ProfileNav {
+  id: number;
+  items: {
+    label: string;
+    /**
+     * if empty, lead to /profile/settings, otherwise what u wrote
+     */
+    slug?: string | null;
+    icon: number | Media;
+    id?: string | null;
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -2198,6 +2218,23 @@ export interface FooterSelect<T extends boolean = true> {
               url?: T;
               label?: T;
             };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "profile-nav_select".
+ */
+export interface ProfileNavSelect<T extends boolean = true> {
+  items?:
+    | T
+    | {
+        label?: T;
+        slug?: T;
+        icon?: T;
         id?: T;
       };
   updatedAt?: T;
