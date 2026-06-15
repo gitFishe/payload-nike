@@ -108,7 +108,7 @@ export function HeaderClient({ header }: Props) {
                 className="flex items-center cursor-pointer relative h-full group px-3"
               >
                 <span className="text-xs group-hover:text-[#707072]">Help</span>
-                <div
+                  <div
                   className={`absolute w-60.25 top-full -right-5 transition-[opacity,translate] duration-300 ease-out bg-white py-3 pr-4 pl-6 ${
                     dropDownMenu === 'help'
                       ? 'translate-y-0 z-50'
@@ -125,8 +125,8 @@ export function HeaderClient({ header }: Props) {
                   )}
                   <ul className="text-xs leading-[150%]">
                     {helpLinks.map((link: any) => (
-                      <li className="text-[#707072] pb-2 hover:text-black w-33.5" key={link.id}>
-                        <Link href={link.url}>{link.label}</Link>
+                      <li className="text-[#707072] pb-2 hover:text-black w-33.5 w-full" key={link.id}>
+                        <Link className='w-full' href={link.url}>{link.label}</Link>
                       </li>
                     ))}
                   </ul>
@@ -160,7 +160,7 @@ export function HeaderClient({ header }: Props) {
                   <ul className="text-xs leading-[150%]">
                     {userLinks.map((link: any) => (
                       <li className="text-[#707072] pb-2 hover:text-black w-33.5" key={link.id}>
-                        <Link href={link.url}>{link.label}</Link>
+                        <Link className='w-full block' href={link.url}>{link.label}</Link>
                       </li>
                     ))}
                   </ul>

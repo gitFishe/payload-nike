@@ -1,6 +1,7 @@
 import type { Interest, User } from '@/payload-types'
 import Link from 'next/link'
 import { Interests } from '@/app/(app)/profile/Interests'
+
 type Props = {
   user: User
 }
@@ -15,7 +16,6 @@ export const ProfileView = ({user}:Props) => {
     { name: 'Settings', link: '/profile/settings' },
   ]
 
-  console.log(user.interests)
 
   return (
     <div className="container">

@@ -1,3 +1,5 @@
+'use client'
+
 import { BasePopup } from '@/components/CustomPopup'
 import { useEffect, useMemo, useState } from 'react'
 

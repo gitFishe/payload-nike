@@ -4,27 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="851ba12a-6553-4555-82c4-b7f488a2d6c0" name="Changes" comment="feat: Start changing Popup system, add Interests collection and integrate with user profile, update sorting mechanism in ProductsHeader">
-      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/settings/_components/SettingsSidebar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/settings/communication-preferences/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/settings/delivery-addresses/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/settings/layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/settings/linked-accounts/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/settings/payment-methods/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/settings/privacy/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/settings/profile-visibility/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/settings/shop-preferences/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/CustomBtnSmall/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/CustomPopup/BillingPopup/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/globals/ProfileNav.ts" afterDir="false" />
+    <list default="true" id="851ba12a-6553-4555-82c4-b7f488a2d6c0" name="Changes" comment="Completed PasswordPopup feat: add new settings components for user preferences, linked accounts, and payment methods">
+      <change afterPath="$PROJECT_DIR$/src/app/(app)/profile/settings/SettingsForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/CustomInput/DateInput/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/CustomInput/LocationInput/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/CustomInput/TextInput/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/countries.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(app)/profile/ProfileView.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/profile/ProfileView.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/(app)/profile/settings/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(app)/profile/settings/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/collections/Users/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/collections/Users/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CustomInput/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomInput/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomPopup/CartPopup/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomPopup/CartPopup/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CustomPopup/PasswordPopup/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomPopup/PasswordPopup/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/index.client.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/index.client.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/payload-types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/payload-types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/payload.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/payload.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plugins/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/plugins/index.ts" afterDir="false" />
     </list>
     <list id="1933d2ca-499b-435b-8a8b-18888fd7be8b" name="Changes by lapkomo2018" comment="" />
     <list id="4d19f5f5-0866-4a1f-9fca-6ee3f055ed10" name="Changes by maksim" comment="" />
@@ -39,7 +34,7 @@
     </persistenceIdMap>
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="376" />
+    <option name="cachedIndexableFilesCount" value="393" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -309,7 +304,13 @@
       <workItem from="1779534785409" duration="10137000" />
       <workItem from="1779636992463" duration="1729000" />
       <workItem from="1779641878287" duration="12390000" />
-      <workItem from="1779705385321" duration="15811000" />
+      <workItem from="1779705385321" duration="19267000" />
+      <workItem from="1779790994488" duration="11985000" />
+      <workItem from="1779884537936" duration="2455000" />
+      <workItem from="1780000016253" duration="825000" />
+      <workItem from="1780095195339" duration="2139000" />
+      <workItem from="1780140751296" duration="1228000" />
+      <workItem from="1780339252254" duration="270000" />
     </task>
     <task id="LOCAL-00001" summary="feat: enhance header configuration with logo and nested navigation structure">
       <option name="closed" value="true" />
@@ -407,7 +408,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779128516426</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Completed PasswordPopup feat: add new settings components for user preferences, linked accounts, and payment methods">
+      <option name="closed" value="true" />
+      <created>1779744906356</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1779744906356</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -459,7 +468,8 @@
     <MESSAGE value="feat: add animations for category display and enhance layout styling" />
     <MESSAGE value=" Extract findProducts helper as the single source of product&#10;  queries used by both the SSR page and the load-more API route.&#10;  Replace stateful filter-reset effects in ProductInfiniteList with&#10;  a key-based remount driven by searchParams, and build it on top&#10;  of the generic InfiniteList component." />
     <MESSAGE value="feat: Start changing Popup system, add Interests collection and integrate with user profile, update sorting mechanism in ProductsHeader" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Start changing Popup system, add Interests collection and integrate with user profile, update sorting mechanism in ProductsHeader" />
+    <MESSAGE value="Completed PasswordPopup feat: add new settings components for user preferences, linked accounts, and payment methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed PasswordPopup feat: add new settings components for user preferences, linked accounts, and payment methods" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

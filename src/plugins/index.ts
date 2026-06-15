@@ -73,6 +73,22 @@ export const plugins: Plugin[] = [
       isAdmin,
       isDocumentOwner,
     },
+    addresses: {
+      // Add a "default shipping address" flag to the saved addresses collection
+      // only (not to the address snapshots embedded in orders/transactions).
+      addressesCollectionOverride: ({ defaultCollection }) => ({
+        ...defaultCollection,
+        fields: [
+          ...defaultCollection.fields,
+          {
+            name: 'isDefaultShipping',
+            type: 'checkbox',
+            label: 'Set as default shipping address',
+            defaultValue: false,
+          },
+        ],
+      }),
+    },
     customers: {
       slug: 'users',
     },

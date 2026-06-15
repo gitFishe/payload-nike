@@ -78,6 +78,8 @@ export interface Config {
     media: Media;
     articles: Article;
     interests: Interest;
+    paymentMethods: PaymentMethod;
+    giftCards: GiftCard;
     forms: Form;
     'form-submissions': FormSubmission;
     addresses: Address;
@@ -98,6 +100,8 @@ export interface Config {
       orders: 'orders';
       cart: 'carts';
       addresses: 'addresses';
+      paymentMethods: 'paymentMethods';
+      giftCards: 'giftCards';
     };
     variantTypes: {
       options: 'variantOptions';
@@ -113,6 +117,8 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
     interests: InterestsSelect<false> | InterestsSelect<true>;
+    paymentMethods: PaymentMethodsSelect<false> | PaymentMethodsSelect<true>;
+    giftCards: GiftCardsSelect<false> | GiftCardsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     addresses: AddressesSelect<false> | AddressesSelect<true>;
@@ -192,6 +198,9 @@ export interface UserAuthOperations {
 export interface User {
   id: number;
   name?: string | null;
+  phone?: string | null;
+  country?: ('UA' | 'GE' | 'US' | 'CN' | 'NL') | null;
+  dateOfBirth?: string | null;
   roles?: ('admin' | 'customer')[] | null;
   orders?: {
     docs?: (number | Order)[];
@@ -209,6 +218,47 @@ export interface User {
     totalDocs?: number;
   };
   interests?: (number | Interest)[] | null;
+  paymentMethods?: {
+    docs?: (number | PaymentMethod)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  giftCards?: {
+    docs?: (number | GiftCard)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  shopPreferences?: {
+    shoeSize?:
+      | (
+          | '4'
+          | '4.5'
+          | '5'
+          | '5.5'
+          | '6'
+          | '6.5'
+          | '7'
+          | '7.5'
+          | '8'
+          | '8.5'
+          | '9'
+          | '9.5'
+          | '10'
+          | '10.5'
+          | '11'
+          | '11.5'
+          | '12'
+          | '12.5'
+          | '13'
+          | '14'
+          | '15'
+        )
+      | null;
+    gender?: ('men' | 'women') | null;
+  };
+  communicationPreferences?: {
+    emailOptIn?: boolean | null;
+  };
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -483,6 +533,7 @@ export interface Address {
     | 'SE'
     | 'CH';
   phone?: string | null;
+  isDefaultShipping?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -495,6 +546,374 @@ export interface Interest {
   name: string;
   link: string;
   category: 'product' | 'athlete' | 'sport' | 'team' | 'city';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "paymentMethods".
+ */
+export interface PaymentMethod {
+  id: number;
+  customer: number | User;
+  /**
+   * Display name, e.g. "Visa ending 4242". Auto-filled if left blank.
+   */
+  label?: string | null;
+  /**
+   * Stripe PaymentMethod id (pm_…). Source of truth for charging.
+   */
+  stripePaymentMethodID: string;
+  /**
+   * Stripe Customer id (cus_…) this method is attached to.
+   */
+  stripeCustomerID?: string | null;
+  brand?: string | null;
+  last4?: string | null;
+  expMonth?: number | null;
+  expYear?: number | null;
+  billingSameAsDefault?: boolean | null;
+  billingAddress?: {
+    firstName?: string | null;
+    lastName?: string | null;
+    addressLine1?: string | null;
+    addressLine2?: string | null;
+    city?: string | null;
+    postalCode?: string | null;
+    state?:
+      | (
+          | 'AL'
+          | 'AK'
+          | 'AZ'
+          | 'AR'
+          | 'CA'
+          | 'CO'
+          | 'CT'
+          | 'DE'
+          | 'FL'
+          | 'GA'
+          | 'HI'
+          | 'ID'
+          | 'IL'
+          | 'IN'
+          | 'IA'
+          | 'KS'
+          | 'KY'
+          | 'LA'
+          | 'ME'
+          | 'MD'
+          | 'MA'
+          | 'MI'
+          | 'MN'
+          | 'MS'
+          | 'MO'
+          | 'MT'
+          | 'NE'
+          | 'NV'
+          | 'NH'
+          | 'NJ'
+          | 'NM'
+          | 'NY'
+          | 'NC'
+          | 'ND'
+          | 'OH'
+          | 'OK'
+          | 'OR'
+          | 'PA'
+          | 'RI'
+          | 'SC'
+          | 'SD'
+          | 'TN'
+          | 'TX'
+          | 'UT'
+          | 'VT'
+          | 'VA'
+          | 'WA'
+          | 'WV'
+          | 'WI'
+          | 'WY'
+        )
+      | null;
+    country?:
+      | (
+          | 'AF'
+          | 'AX'
+          | 'AL'
+          | 'DZ'
+          | 'AS'
+          | 'AD'
+          | 'AO'
+          | 'AI'
+          | 'AQ'
+          | 'AG'
+          | 'AR'
+          | 'AM'
+          | 'AW'
+          | 'AU'
+          | 'AT'
+          | 'AZ'
+          | 'BS'
+          | 'BH'
+          | 'BD'
+          | 'BB'
+          | 'BY'
+          | 'BE'
+          | 'BZ'
+          | 'BJ'
+          | 'BM'
+          | 'BT'
+          | 'BO'
+          | 'BA'
+          | 'BW'
+          | 'BV'
+          | 'BR'
+          | 'IO'
+          | 'BN'
+          | 'BG'
+          | 'BF'
+          | 'BI'
+          | 'KH'
+          | 'CM'
+          | 'CA'
+          | 'CV'
+          | 'KY'
+          | 'CF'
+          | 'TD'
+          | 'CL'
+          | 'CN'
+          | 'CX'
+          | 'CC'
+          | 'CO'
+          | 'KM'
+          | 'CG'
+          | 'CD'
+          | 'CK'
+          | 'CR'
+          | 'CI'
+          | 'HR'
+          | 'CU'
+          | 'CY'
+          | 'CZ'
+          | 'DK'
+          | 'DJ'
+          | 'DM'
+          | 'DO'
+          | 'EC'
+          | 'EG'
+          | 'SV'
+          | 'GQ'
+          | 'ER'
+          | 'EE'
+          | 'ET'
+          | 'FK'
+          | 'FO'
+          | 'FJ'
+          | 'FI'
+          | 'FR'
+          | 'GF'
+          | 'PF'
+          | 'TF'
+          | 'GA'
+          | 'GM'
+          | 'GE'
+          | 'DE'
+          | 'GH'
+          | 'GI'
+          | 'GR'
+          | 'GL'
+          | 'GD'
+          | 'GP'
+          | 'GU'
+          | 'GT'
+          | 'GG'
+          | 'GN'
+          | 'GW'
+          | 'GY'
+          | 'HT'
+          | 'HM'
+          | 'VA'
+          | 'HN'
+          | 'HK'
+          | 'HU'
+          | 'IS'
+          | 'IN'
+          | 'ID'
+          | 'IR'
+          | 'IQ'
+          | 'IE'
+          | 'IM'
+          | 'IL'
+          | 'IT'
+          | 'JM'
+          | 'JP'
+          | 'JE'
+          | 'JO'
+          | 'KZ'
+          | 'KE'
+          | 'KI'
+          | 'KP'
+          | 'KR'
+          | 'XK'
+          | 'KW'
+          | 'KG'
+          | 'LA'
+          | 'LV'
+          | 'LB'
+          | 'LS'
+          | 'LR'
+          | 'LY'
+          | 'LI'
+          | 'LT'
+          | 'LU'
+          | 'MO'
+          | 'MK'
+          | 'MG'
+          | 'MW'
+          | 'MY'
+          | 'MV'
+          | 'ML'
+          | 'MT'
+          | 'MH'
+          | 'MQ'
+          | 'MR'
+          | 'MU'
+          | 'YT'
+          | 'MX'
+          | 'FM'
+          | 'MD'
+          | 'MC'
+          | 'MN'
+          | 'ME'
+          | 'MS'
+          | 'MA'
+          | 'MZ'
+          | 'MM'
+          | 'NA'
+          | 'NR'
+          | 'NP'
+          | 'NL'
+          | 'AN'
+          | 'NC'
+          | 'NZ'
+          | 'NI'
+          | 'NE'
+          | 'NG'
+          | 'NU'
+          | 'NF'
+          | 'MP'
+          | 'NO'
+          | 'OM'
+          | 'PK'
+          | 'PW'
+          | 'PS'
+          | 'PA'
+          | 'PG'
+          | 'PY'
+          | 'PE'
+          | 'PH'
+          | 'PN'
+          | 'PL'
+          | 'PT'
+          | 'PR'
+          | 'QA'
+          | 'RE'
+          | 'RO'
+          | 'RU'
+          | 'RW'
+          | 'SH'
+          | 'KN'
+          | 'LC'
+          | 'PM'
+          | 'VC'
+          | 'WS'
+          | 'SM'
+          | 'ST'
+          | 'SA'
+          | 'SN'
+          | 'RS'
+          | 'SC'
+          | 'SL'
+          | 'SG'
+          | 'SK'
+          | 'SI'
+          | 'SB'
+          | 'SO'
+          | 'ZA'
+          | 'GS'
+          | 'ES'
+          | 'LK'
+          | 'SD'
+          | 'SR'
+          | 'SJ'
+          | 'SZ'
+          | 'SE'
+          | 'CH'
+          | 'SY'
+          | 'TW'
+          | 'TJ'
+          | 'TZ'
+          | 'TH'
+          | 'TL'
+          | 'TG'
+          | 'TK'
+          | 'TO'
+          | 'TT'
+          | 'TN'
+          | 'TR'
+          | 'TM'
+          | 'TC'
+          | 'TV'
+          | 'UG'
+          | 'UA'
+          | 'AE'
+          | 'GB'
+          | 'US'
+          | 'UM'
+          | 'UY'
+          | 'UZ'
+          | 'VU'
+          | 'VE'
+          | 'VN'
+          | 'VG'
+          | 'VI'
+          | 'WF'
+          | 'EH'
+          | 'YE'
+          | 'ZM'
+          | 'ZW'
+        )
+      | null;
+  };
+  isDefault?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "giftCards".
+ */
+export interface GiftCard {
+  id: number;
+  code: string;
+  /**
+   * Optional security PIN required to redeem.
+   */
+  pin?: string | null;
+  /**
+   * Value the card was issued with.
+   */
+  initialBalance: number;
+  /**
+   * Remaining balance.
+   */
+  balance: number;
+  currency: 'USD' | 'EUR' | 'GBP';
+  status: 'active' | 'redeemed' | 'expired' | 'disabled';
+  /**
+   * Customer who has redeemed / owns this card. Empty until redeemed.
+   */
+  customer?: (number | null) | User;
+  expiresAt?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1199,6 +1618,14 @@ export interface PayloadLockedDocument {
         value: number | Interest;
       } | null)
     | ({
+        relationTo: 'paymentMethods';
+        value: number | PaymentMethod;
+      } | null)
+    | ({
+        relationTo: 'giftCards';
+        value: number | GiftCard;
+      } | null)
+    | ({
         relationTo: 'forms';
         value: number | Form;
       } | null)
@@ -1286,11 +1713,27 @@ export interface PayloadMigration {
  */
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
+  phone?: T;
+  country?: T;
+  dateOfBirth?: T;
   roles?: T;
   orders?: T;
   cart?: T;
   addresses?: T;
   interests?: T;
+  paymentMethods?: T;
+  giftCards?: T;
+  shopPreferences?:
+    | T
+    | {
+        shoeSize?: T;
+        gender?: T;
+      };
+  communicationPreferences?:
+    | T
+    | {
+        emailOptIn?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -1635,6 +2078,52 @@ export interface InterestsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "paymentMethods_select".
+ */
+export interface PaymentMethodsSelect<T extends boolean = true> {
+  customer?: T;
+  label?: T;
+  stripePaymentMethodID?: T;
+  stripeCustomerID?: T;
+  brand?: T;
+  last4?: T;
+  expMonth?: T;
+  expYear?: T;
+  billingSameAsDefault?: T;
+  billingAddress?:
+    | T
+    | {
+        firstName?: T;
+        lastName?: T;
+        addressLine1?: T;
+        addressLine2?: T;
+        city?: T;
+        postalCode?: T;
+        state?: T;
+        country?: T;
+      };
+  isDefault?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "giftCards_select".
+ */
+export interface GiftCardsSelect<T extends boolean = true> {
+  code?: T;
+  pin?: T;
+  initialBalance?: T;
+  balance?: T;
+  currency?: T;
+  status?: T;
+  customer?: T;
+  expiresAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "forms_select".
  */
 export interface FormsSelect<T extends boolean = true> {
@@ -1799,6 +2288,7 @@ export interface AddressesSelect<T extends boolean = true> {
   postalCode?: T;
   country?: T;
   phone?: T;
+  isDefaultShipping?: T;
   updatedAt?: T;
   createdAt?: T;
 }
