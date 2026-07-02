@@ -1,5 +1,5 @@
 'use client'
-import React, { Suspense, useState } from 'react'
+import React, { useState } from 'react'
 
 import { SearchBar } from '@/components/SearchBar'
 import Link from 'next/link'
@@ -59,10 +59,10 @@ export function HeaderClient({ header }: Props) {
 
   const renderColumnLinks = (column: ColumnGroup) => {
     return (
-      <div key={column.id} className="px-4">
+      <div key={column.id} className="px-7 w-60">
         <ul className="[&>li:first-child]:text-base text-sm [&>li:first-child]:font-semibold font-medium [&>li:first-child]:text-black text-[#737075] [&>li:first-child]:mb-1 cursor-pointer">
           {column.col.map((row) => (
-            <li className="mt-0.5 hover:text-black" key={row.id}>
+            <li className="mt-2 hover:text-black" key={row.id}>
               {row.ulName}
             </li>
           ))}
@@ -71,7 +71,7 @@ export function HeaderClient({ header }: Props) {
         {column.showCol2 && column.col2?.length ? (
           <ul className="[&>li:first-child]:text-base text-sm [&>li:first-child]:font-semibold [&>li:first-child]:text-black text-[#737075] mt-10 cursor-pointer">
             {column.col2.map((row) => (
-              <li className="hover:text-black" key={row.id}>
+              <li className="mt-2 hover:text-black" key={row.id}>
                 {row.ulName}
               </li>
             ))}
@@ -87,6 +87,7 @@ export function HeaderClient({ header }: Props) {
     <div>
       <div className="bg-light-gray w-full">
         <div className="container">
+          {/*_____________________________________ SUBHEADER _____________________________________*/}
           <div className="flex justify-between items-center h-9 text-black">
             <div className="flex gap-6">
               <Link href="/" className="w-6 h-6">
@@ -97,7 +98,6 @@ export function HeaderClient({ header }: Props) {
                 <ConverseIcon />
               </Link>
             </div>
-
             <div className="flex items-center text-xs h-full dividers font-semibold">
               <div className="relative px-3">
                 <span>Find a Store</span>
@@ -108,7 +108,7 @@ export function HeaderClient({ header }: Props) {
                 className="flex items-center cursor-pointer relative h-full group px-3"
               >
                 <span className="text-xs group-hover:text-[#707072]">Help</span>
-                  <div
+                <div
                   className={`absolute w-60.25 top-full -right-5 transition-[opacity,translate] duration-300 ease-out bg-white py-3 pr-4 pl-6 ${
                     dropDownMenu === 'help'
                       ? 'translate-y-0 z-50'
@@ -125,12 +125,17 @@ export function HeaderClient({ header }: Props) {
                   )}
                   <ul className="text-xs leading-[150%]">
                     {helpLinks.map((link: any) => (
-                      <li className="text-[#707072] pb-2 hover:text-black w-33.5 w-full" key={link.id}>
-                        <Link className='w-full' href={link.url}>{link.label}</Link>
+                      <li
+                        className="text-[#707072] pb-2 hover:text-black w-33.5 w-full"
+                        key={link.id}
+                      >
+                        <Link className="w-full" href={link.url}>
+                          {link.label}
+                        </Link>
                       </li>
                     ))}
                   </ul>
-                </div> 
+                </div>
               </div>
 
               <div
@@ -160,7 +165,9 @@ export function HeaderClient({ header }: Props) {
                   <ul className="text-xs leading-[150%]">
                     {userLinks.map((link: any) => (
                       <li className="text-[#707072] pb-2 hover:text-black w-33.5" key={link.id}>
-                        <Link className='w-full block' href={link.url}>{link.label}</Link>
+                        <Link className="w-full block" href={link.url}>
+                          {link.label}
+                        </Link>
                       </li>
                     ))}
                   </ul>

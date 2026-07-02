@@ -8,7 +8,7 @@ export const BigImgsBlock: React.FC<BigImgsType> = ({ blocks }) => {
 
   return (
     <section>
-      <div className="flex">
+      <div className="flex h-100">
         {blocks.map((block) => (
           <div key={block.id} className="relative aspect-square w-full">
             <a href={block.link?.url || undefined} className="absolute z-10 left-0 top-0 w-full h-full cursor-pointer" />
