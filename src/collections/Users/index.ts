@@ -8,7 +8,6 @@ import { checkRole } from '@/access/utilities'
 import { shoeSizeOptions, genderOptions } from '@/lib/preferences'
 
 import { ensureFirstUserIsAdmin } from './hooks/ensureFirstUserIsAdmin'
-import { countryOptions } from '@/lib/countries'
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -38,8 +37,8 @@ export const Users: CollectionConfig = {
     },
     {
       name: 'country',
-      type: 'select',
-      options:countryOptions,
+      type: 'relationship',
+      relationTo: 'countries',
     },
     {
       name: 'dateOfBirth',

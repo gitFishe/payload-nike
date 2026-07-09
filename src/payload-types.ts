@@ -80,6 +80,7 @@ export interface Config {
     interests: Interest;
     paymentMethods: PaymentMethod;
     giftCards: GiftCard;
+    countries: Country;
     forms: Form;
     'form-submissions': FormSubmission;
     addresses: Address;
@@ -119,6 +120,7 @@ export interface Config {
     interests: InterestsSelect<false> | InterestsSelect<true>;
     paymentMethods: PaymentMethodsSelect<false> | PaymentMethodsSelect<true>;
     giftCards: GiftCardsSelect<false> | GiftCardsSelect<true>;
+    countries: CountriesSelect<false> | CountriesSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     addresses: AddressesSelect<false> | AddressesSelect<true>;
@@ -199,7 +201,7 @@ export interface User {
   id: number;
   name?: string | null;
   phone?: string | null;
-  country?: ('UA' | 'GE' | 'US' | 'CN' | 'NL') | null;
+  country?: (number | null) | Country;
   dateOfBirth?: string | null;
   roles?: ('admin' | 'customer')[] | null;
   orders?: {
@@ -276,6 +278,23 @@ export interface User {
       }[]
     | null;
   password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "countries".
+ */
+export interface Country {
+  id: number;
+  /**
+   * Display name, e.g. "Ukraine".
+   */
+  label: string;
+  /**
+   * Short country code, e.g. "UA".
+   */
+  code: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1626,6 +1645,10 @@ export interface PayloadLockedDocument {
         value: number | GiftCard;
       } | null)
     | ({
+        relationTo: 'countries';
+        value: number | Country;
+      } | null)
+    | ({
         relationTo: 'forms';
         value: number | Form;
       } | null)
@@ -2119,6 +2142,16 @@ export interface GiftCardsSelect<T extends boolean = true> {
   status?: T;
   customer?: T;
   expiresAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "countries_select".
+ */
+export interface CountriesSelect<T extends boolean = true> {
+  label?: T;
+  code?: T;
   updatedAt?: T;
   createdAt?: T;
 }

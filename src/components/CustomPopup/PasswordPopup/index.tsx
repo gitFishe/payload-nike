@@ -1,57 +1,51 @@
 'use client'
 
 import { BasePopup } from '@/components/CustomPopup'
-import { useEffect, useMemo, useState } from 'react'
+import { useForm } from 'react-hook-form'
 
-import { CustomInput } from '@/components/CustomInput'
 import { CrossIcon } from '@/components/icons/CrossIcon'
 import { CustomBtnSmall } from '@/components/CustomBtnSmall'
+import { TextInput } from '@/components/CustomInput/TextInput'
 
 type CartPopupProps = {
   isShown: boolean
   onClose: () => void
 }
 
-interface validTypes {
-  curPass:boolean
-  minimum8: boolean
-  normalText: boolean
-  doubt: boolean
+type PasswordFormValues = {
+  currentPassword: string
+  newPassword: string
+  repeatPassword: string
 }
-
 
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/
 
 export const PasswordPopup = ({ isShown, onClose }: CartPopupProps) => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    getValues,
+    formState: { errors, isSubmitting, isValid },
+  } = useForm<PasswordFormValues>({
+    mode: 'onChange',
+    defaultValues: {
+      currentPassword: '',
+      newPassword: '',
+      repeatPassword: '',
+    },
+  })
 
+  const newPassword = watch('newPassword')
 
-  const [currentPassword, setCurrentPassword] = useState('')
-  const [newPassword, setNewPassword] = useState('')
-  const [repeatPassword, setRepeatPassword] = useState('')
+  const minimum8 = newPassword.length >= 8
+  const normalText = passwordRegex.test(newPassword)
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
-  const validation: validTypes = {
-
-      curPass: Boolean(currentPassword),
-      minimum8: newPassword.length >= 8,
-      normalText: passwordRegex.test(newPassword),
-      doubt: newPassword === repeatPassword,
-  }
-
-
-  const isFormValid = Object.values(validation).every(Boolean)
-
-  const handleClick = ( ) => {
-    setIsSubmitting(true)
-
-    if(isFormValid) {
-      console.log([currentPassword,newPassword,repeatPassword])
-    } else {
-
-    }
-
-    setIsSubmitting(false)
+  const onSubmit = async (data: PasswordFormValues) => {
+    console.log([data.currentPassword, data.newPassword, data.repeatPassword])
+    reset()
+    onClose()
   }
 
   return (
@@ -60,59 +54,61 @@ export const PasswordPopup = ({ isShown, onClose }: CartPopupProps) => {
       onClose={onClose}
       className="max-w-134 max-h-[80%] w-full p-12 rounded-[24px]"
     >
-      <div className="flex flex-col items-stretch">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-stretch">
         <h1 className="text-3xl font-medium pt-1 pb-6">Edit Password</h1>
         <div>
-          <CustomInput
-            customStyles="pt-1 pb-7"
-            onChange={setCurrentPassword}
-            value={currentPassword}
+          <TextInput
+            type="password"
             label="Current Password*"
-            errorMessage="Please enter your current password."
+            isError={Boolean(errors.currentPassword)}
+            errorMessage={errors.currentPassword?.message}
+            {...register('currentPassword', {
+              required: 'Please enter your current password.',
+            })}
           />
-          <CustomInput
-            customStyles="pt-1 pb-6"
-            onChange={setNewPassword}
-            value={newPassword}
+          <TextInput
+            type="password"
             label="New Password*"
-            errorMessage="Please enter a valid new password."
-            isError={!(validation.minimum8 && validation.normalText && newPassword.length > 0)}
+            isError={Boolean(errors.newPassword)}
+            errorMessage={errors.newPassword?.message}
+            {...register('newPassword', {
+              required: 'Please enter a valid new password.',
+              minLength: { value: 8, message: 'Please enter a valid new password.' },
+              pattern: { value: passwordRegex, message: 'Please enter a valid new password.' },
+            })}
           />
-          <CustomInput
-            customStyles="pt-1 pb-7"
-            onChange={setRepeatPassword}
-            value={repeatPassword}
+          <TextInput
+            type="password"
             label="Confirm New Password*"
-            errorMessage="Password does not match."
-            isError={!validation.doubt && repeatPassword.length > 0}
+            isError={Boolean(errors.repeatPassword)}
+            errorMessage={errors.repeatPassword?.message}
+            {...register('repeatPassword', {
+              required: 'Password does not match.',
+              validate: (value) => value === getValues('newPassword') || 'Password does not match.',
+            })}
           />
         </div>
         <div>
           <div className="relative pl-7">
             <span>Password requirements:</span>
           </div>
-          <div
-            className={`relative pl-7 ${validation.minimum8 || validation.normalText ? '' : 'border-[#d30005]'}`}
-          >
-            {validation.minimum8 ? '' : <CrossIcon styles="absolute left-0" />}
-            <span className={validation.minimum8 ? 'text-[#007d48]' : ''}>
-              Minimum of 8 characters
-            </span>
+          <div className={`relative pl-7 ${minimum8 || normalText ? '' : 'border-[#d30005]'}`}>
+            {minimum8 ? '' : <CrossIcon styles="absolute left-0" />}
+            <span className={minimum8 ? 'text-[#007d48]' : ''}>Minimum of 8 characters</span>
           </div>
           <div className="relative pl-7">
-            {validation.normalText ? '' : <CrossIcon styles="absolute left-0" />}
-            <span className={validation.normalText ? 'text-[#007d48]' : ''}>
+            {normalText ? '' : <CrossIcon styles="absolute left-0" />}
+            <span className={normalText ? 'text-[#007d48]' : ''}>
               Uppercase, lowercase letters, and one number
             </span>
           </div>
         </div>
         <CustomBtnSmall
-          isDisabled={!isFormValid || !isSubmitting}
-          click={handleClick}
+          isDisabled={!isValid || isSubmitting}
           label="Save"
           styles="ml-auto mt-10 rounded-full px-4 py-1"
         />
-      </div>
+      </form>
     </BasePopup>
   )
 }

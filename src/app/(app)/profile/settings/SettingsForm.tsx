@@ -1,22 +1,26 @@
 'use client'
 
-import type {User} from '@/payload-types'
+import type {Country, User} from '@/payload-types'
 import { useState } from 'react'
-import { CustomInput } from '@/components/CustomInput'
 import { PasswordPopup } from '@/components/CustomPopup/PasswordPopup'
-import {countryOptions} from '@/lib/countries'
 import { TextInput } from '@/components/CustomInput/TextInput'
+import { LocationInput } from '@/components/CustomInput/LocationInput'
+import { DateInput } from '@/components/CustomInput/DateInput'
 
 
-export const SettingsForm = ({ user }: { user: User }) => {
+export const SettingsForm = ({ user, countries }: { user: User; countries: Country[] }) => {
   const [email, setEmail] = useState(user.email ?? '')
   const [emailError, setEmailError] = useState(false)
   const [phone, setPhone] = useState(user.phone ?? '')
-  const [country, setCountry] = useState(user.country ?? '')
+  const [country, setCountry] = useState<string | number>(
+    (typeof user.country === 'object' ? user.country?.id : user.country) ?? '',
+  )
+
+  const countryOptions = countries.map((item) => ({ label: item.label, value: item.id }))
 
   const [dob, setDob] = useState(user.dateOfBirth?.slice(0,10) ?? '')
 
-  const [isLoading, setIsLoading] = useState(false)
+  const [btnDisabled, setBtnDisabled] = useState(false)
 
 
 
@@ -37,7 +41,7 @@ export const SettingsForm = ({ user }: { user: User }) => {
   }
 
   const saveData = () => {
-    setIsLoading(true)
+    setBtnDisabled(true)
 
     console.log(email)
 
@@ -46,7 +50,7 @@ export const SettingsForm = ({ user }: { user: User }) => {
     } else {
       console.log('error')
     }
-    setIsLoading(false)
+    setBtnDisabled(false)
   }
 
 
@@ -59,17 +63,23 @@ export const SettingsForm = ({ user }: { user: User }) => {
 
         <div className="mt-5">
           <TextInput
-            onChange={validateEmail}
+            onChange={(e) => validateEmail(e.target.value)}
             value={email}
             isError={emailError}
-            label="Email" />
+            label="Email"
+          />
         </div>
 
         <div className="mt-7.5">
           <h3 className="font-medium">Password</h3>
           <div className="py-3 pr-5 flex justify-between items-center">
             <span className="align-middle">••••••••••••••••</span>
-            <button onClick={popupHandler}>Edit</button>
+            <button
+              className="underline decoration-2 underline-offset-4 cursor-pointer"
+              onClick={popupHandler}
+            >
+              Edit
+            </button>
           </div>
         </div>
 
@@ -81,23 +91,19 @@ export const SettingsForm = ({ user }: { user: User }) => {
         </div>
 
         <div className="mt-5">
-          <TextInput onChange={validateEmail} value={country} isError={emailError} label="Email" />
-        </div>
-
-        <div>
-          {countryOptions.map((item, i) => (
-            <span key={i}>{item.label}</span>
-          ))}
+          <DateInput
+            label='Date of Birth*'
+            value={dob}
+            onChange={(value) => setCountry(value)}
+          />
         </div>
 
         <div className="mt-5">
-          <h3 className="font-medium">Location</h3>
-          <TextInput
-            customStyles="mt-3"
-            onChange={() => console.log('typed')}
-            value={dob}
-            isError={emailError}
-            label="Email"
+          <LocationInput
+            label="Country"
+            options={countryOptions}
+            value={country}
+            onChange={(value) => setCountry(value)}
           />
         </div>
 
@@ -109,9 +115,9 @@ export const SettingsForm = ({ user }: { user: User }) => {
         </div>
 
         <button
-          disabled={isLoading}
+          disabled={btnDisabled}
           onClick={saveData}
-          className={`bg-black text-white px-3 py-1.5 mt-10 ml-auto rounded-[30px] disabled:bg-gray-300 ${isLoading ? 'cursor-auto' : 'cursor-pointer'}`}
+          className={`text-white px-3 py-1.5 mt-10 ml-auto rounded-[30px] disabled:bg-gray-300 ${btnDisabled ? 'bg-gray-300 cursor-auto' : 'bg-black cursor-pointer'}`}
         >
           Save
         </button>

@@ -15,6 +15,7 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 
 import { Categories } from '@/collections/Categories'
+import { Countries } from '@/collections/Countries'
 import { GiftCards } from '@/collections/GiftCards'
 import { Interests } from '@/collections/Interests'
 import { Media } from '@/collections/Media'
@@ -23,6 +24,7 @@ import { PaymentMethods } from '@/collections/PaymentMethods'
 import { Users } from '@/collections/Users'
 import { Footer } from '@/globals/Footer'
 import { Header } from '@/globals/Header'
+import { countryOptions } from '@/lib/countries'
 import { plugins } from './plugins'
 import {Articles} from "@/collections/Articles";
 import { ProfileNav } from '@/globals/ProfileNav'
@@ -42,7 +44,16 @@ export default buildConfig({
     },
     user: Users.slug,
   },
-  collections: [Users, Pages, Categories, Media, Articles, Interests, PaymentMethods, GiftCards],
+  collections: [Users, Pages, Categories, Media, Articles, Interests, PaymentMethods, GiftCards, Countries],
+  onInit: async (payload) => {
+    // Seed the default country list once, if the collection is still empty.
+    const { totalDocs } = await payload.count({ collection: 'countries' })
+    if (totalDocs === 0) {
+      for (const { label, value } of countryOptions) {
+        await payload.create({ collection: 'countries', data: { label, code: value } })
+      }
+    }
+  },
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL || '',

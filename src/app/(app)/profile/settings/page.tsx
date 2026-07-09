@@ -12,5 +12,11 @@ export default async function Settings()  {
 
   if(!user) redirect('/login')
 
-  return <SettingsForm user={user}/>
+  const countries = await payload.find({
+    collection: 'countries',
+    limit: 0,
+    sort: 'label',
+  })
+
+  return <SettingsForm user={user} countries={countries.docs} />
 }
