@@ -58,7 +58,7 @@ export const LocationInput = ({
           } ${isOpen ? 'border-primary' : ''}`}
         >
           <span className={selected ? 'text-black' : 'text-transparent'}>
-            {selected?.label ?? label}
+            {selected?.label}
           </span>
           <svg
             width="12"

@@ -94,7 +94,7 @@ export const SettingsForm = ({ user, countries }: { user: User; countries: Count
           <DateInput
             label='Date of Birth*'
             value={dob}
-            onChange={(value) => setCountry(value)}
+            onChange={(value) => setDob(value)}
           />
         </div>
 
