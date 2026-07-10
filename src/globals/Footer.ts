@@ -1,7 +1,5 @@
 import type { GlobalConfig } from 'payload'
 
-import { link } from '@/fields/link'
-
 export const Footer: GlobalConfig = {
   slug: 'footer',
   access: {
@@ -9,14 +7,46 @@ export const Footer: GlobalConfig = {
   },
   fields: [
     {
-      name: 'navItems',
+      name: 'columns',
       type: 'array',
+      label: 'Footer Columns',
+      maxRows: 5,
       fields: [
-        link({
-          appearances: false,
-        }),
+        {
+          type: 'row',
+          fields: [
+            { name: 'heading', type: 'text', required: true },
+            { name: 'headingUrl', type: 'text' },
+          ],
+        },
+        {
+          name: 'links',
+          type: 'array',
+          fields: [
+            {
+              type: 'row',
+              fields: [
+                { name: 'label', type: 'text', required: true },
+                { name: 'url', type: 'text', required: true },
+              ],
+            },
+          ],
+        },
       ],
-      maxRows: 6,
+    },
+    {
+      name: 'subFooterText',
+      type: 'array',
+      label: 'Sub-footer',
+      fields: [
+        {
+          type: 'row',
+          fields: [
+            { name: 'label', type: 'text', required: true },
+            { name: 'url', type: 'text' },
+          ],
+        },
+      ],
     },
   ],
 }
