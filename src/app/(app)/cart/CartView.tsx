@@ -1,15 +1,17 @@
 'use client'
 
 import CartItem from '@/components/CartItem'
-import { useCart } from '@/providers/Cart'
+import TableRow from '@/app/(app)/cart/TableRow'
+import { useCart } from '@payloadcms/plugin-ecommerce/client/react'
 import { SummaryArrow } from '@/components/icons/SummaryArrow'
 import { useState } from 'react'
+import Link from 'next/link'
 
 export default function CartView() {
-  const {items,totalPrice,totalCount,clear} = useCart()
+  const { cart } = useCart()
+  const items = cart?.items ?? []
 
   const [open, setOpen] = useState(false)
-
 
   return (
     <div className="flex pt-14">
@@ -17,7 +19,7 @@ export default function CartView() {
         <h1 className="text-2xl">Bag</h1>
         <div>
           {items.length > 0 ? (
-            items.map((item) => <CartItem key={item.id} item={item} />)
+            items.map((item, i) => <CartItem key={item.id ?? i} item={item} />)
           ) : (
             <p className="pl-1">There are no items in your bag.</p>
           )}
@@ -43,7 +45,7 @@ export default function CartView() {
             >
               <div className="overflow-hidden">
                 <div className="flex items-center pb-7.5 pt-0.5">
-                  <input className="mr-2 border border-primary rounded-[8px] w-full  px-4 py-2 h-9.25"/>
+                  <input className="mr-2 border border-primary rounded-md w-full  px-4 py-2 h-9.25"/>
                   <button className="border border-primary rounded-full px-6 py-2 cursor-pointer hover:border-[#cccccc] transition-border duration-400">
                     <span>Apply</span>
                   </button>
@@ -71,45 +73,9 @@ export default function CartView() {
           </div>
         </div>
         <button className="bg-black h-15 w-full rounded-full flex items-center justify-center text-white mt-5 cursor-pointer">
-          <span>Checkout</span>
+          <Link href='/checkout'>Checkout</Link>
         </button>
       </aside>
-    </div>
-  )
-}
-
-type TableRowProps = {
-  text:string,
-  rowEnd?:string | 'Free',
-  mark?:boolean,
-  markText?:string
-}
-
-function TableRow({
-  text,
-  mark,
-  markText,
-  rowEnd = '-'
-}: TableRowProps) {
-
-  return (
-    <div className='flex justify-between'>
-      <div className="flex">
-        <span>{text}</span>
-        {mark && (
-          <div className="ml-1 mr-full">
-            <button className="w-3.5 h-4.5">
-              <img src="/icon/cart-question-mark.svg" />
-            </button>
-            <div>
-              <p>{markText}</p>
-            </div>
-          </div>
-        )}
-      </div>
-      <div>
-        <span>{rowEnd}</span>
-      </div>
     </div>
   )
 }

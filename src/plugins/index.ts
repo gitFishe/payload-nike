@@ -15,6 +15,7 @@ import { adminOnlyFieldAccess } from '@/access/adminOnlyFieldAccess'
 import { customerOnlyFieldAccess } from '@/access/customerOnlyFieldAccess'
 import { isAdmin } from '@/access/isAdmin'
 import { isDocumentOwner } from '@/access/isDocumentOwner'
+import { syncPluginPrice } from '@/collections/Products/hooks/syncPluginPrice'
 
 const generateTitle: GenerateTitle<Product | Page> = ({ doc }) => {
   return doc?.title ? `${doc.title} | Payload Ecommerce Template` : 'Payload Ecommerce Template'
@@ -23,7 +24,9 @@ const generateTitle: GenerateTitle<Product | Page> = ({ doc }) => {
 const generateURL: GenerateURL<Product | Page> = ({ doc }) => {
   const url = getServerSideURL()
 
-  return doc?.slug ? `${url}/${doc.slug}` : url
+  const slug = doc && 'slug' in doc ? doc.slug : undefined
+
+  return slug ? `${url}/${slug}` : url
 }
 
 export const plugins: Plugin[] = [
@@ -112,6 +115,17 @@ export const plugins: Plugin[] = [
         return {
           ...defaultCollection,
           ...Products,
+          // Мерджимо хуки: лишаємо хуки плагіна й додаємо синхронізацію ціни.
+          // (спред ...Products міг би затерти defaultCollection.hooks)
+          hooks: {
+            ...defaultCollection.hooks,
+            ...Products.hooks,
+            beforeChange: [
+              ...(defaultCollection.hooks?.beforeChange ?? []),
+              ...(Products.hooks?.beforeChange ?? []),
+              syncPluginPrice,
+            ],
+          },
           // 3. Створюємо Таби і розкидаємо поля по них
           fields: [
             {

@@ -11,7 +11,6 @@ import { DateInput } from '@/components/CustomInput/DateInput'
 export const SettingsForm = ({ user, countries }: { user: User; countries: Country[] }) => {
   const [email, setEmail] = useState(user.email ?? '')
   const [emailError, setEmailError] = useState(false)
-  const [phone, setPhone] = useState(user.phone ?? '')
   const [country, setCountry] = useState<string | number>(
     (typeof user.country === 'object' ? user.country?.id : user.country) ?? '',
   )

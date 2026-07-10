@@ -85,9 +85,10 @@ export function HeaderClient({ header }: Props) {
 
   return (
     <div>
+      {/*_____________________________________ SUBHEADER _____________________________________*/}
+
       <div className="bg-light-gray w-full">
         <div className="container">
-          {/*_____________________________________ SUBHEADER _____________________________________*/}
           <div className="flex justify-between items-center h-9 text-black">
             <div className="flex gap-6">
               <Link href="/" className="w-6 h-6">
@@ -177,6 +178,8 @@ export function HeaderClient({ header }: Props) {
           </div>
         </div>
       </div>
+
+      {/*_____________________________________ HEADER _____________________________________*/}
       <div
         className={`bg-white relative z-20
       before
@@ -197,10 +200,10 @@ export function HeaderClient({ header }: Props) {
       >
         <div className="container">
           <div className="flex h-15 justify-between items-center">
-            <div className="w-10 h-10 border">
+            <Link href='/test' className="w-10 h-10 border z-50">
               {/* eslint-disable-next-line @next/next/no-img-element,jsx-a11y/alt-text */}
               {/*<img src={logo.url || undefined} />*/}
-            </div>
+            </Link>
 
             <ul className="flex absolute text-black h-15 w-full items-center justify-center left-0">
               {navItems.map((nav) => (

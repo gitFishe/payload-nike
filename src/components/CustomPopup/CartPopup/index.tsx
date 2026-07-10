@@ -1,16 +1,22 @@
 import { BasePopup } from '@/components/CustomPopup'
-import { useEffect, useState } from 'react'
-import { CartItemType } from '@/components/CartItem'
+import { useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import type { Swiper as SwiperType } from 'swiper'
 import { SummaryArrow } from '@/components/icons/SummaryArrow'
-import { CustomInput } from '@/components/CustomInput'
+
+// Self-contained item shape. This popup (size picker) is currently unused after
+// the cart moved to the plugin, where size is not a purchasable variant.
+type CartPopupItem = {
+  title?: string | null
+  price?: number | null
+  imageUrl?: string | null
+}
 
 type CartPopupProps = {
   isShown: boolean
   onClose: () => void
-  item: CartItemType
+  item: CartPopupItem
   onUpdate: (size: number) => void
 }
 

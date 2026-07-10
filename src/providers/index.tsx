@@ -5,6 +5,7 @@ import { HeaderThemeProvider } from './HeaderTheme'
 import { ThemeProvider } from './Theme'
 import { SonnerProvider } from '@/providers/Sonner'
 import { CartProvider } from '@/providers/Cart'
+import { EcommerceProvider } from '@/providers/Ecommerce'
 
 export const Providers: React.FC<{
   children: React.ReactNode
@@ -14,9 +15,11 @@ export const Providers: React.FC<{
       <AuthProvider>
         <HeaderThemeProvider>
           <SonnerProvider />
-            <CartProvider>
-              {children}
-            </CartProvider>
+            <EcommerceProvider>
+              <CartProvider>
+                {children}
+              </CartProvider>
+            </EcommerceProvider>
         </HeaderThemeProvider>
       </AuthProvider>
     </ThemeProvider>

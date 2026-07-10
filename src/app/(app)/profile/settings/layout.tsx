@@ -1,5 +1,5 @@
 import { getPayload } from 'payload'
-import { SettingsSidebar } from '@/app/(app)/profile/settings/_components/SettingsSidebar'
+import { SettingsSidebar } from '@/app/(app)/profile/settings/SettingsSidebar'
 
 import type {ReactNode} from 'react'
 import config from '@payload-config'
