@@ -1,11 +1,13 @@
 'use client'
 
+import { useState } from 'react'
 import { useCart } from '@payloadcms/plugin-ecommerce/client/react'
 import type { Cart } from '@/payload-types'
 import { CartMinus } from '@/components/icons/CartMinus'
 import { CartDelete } from '@/components/icons/CartDelete'
 import { CartPlus } from '@/components/icons/CartPlus'
 import { CartFavourite } from '@/components/icons/cartFavourite'
+import { CartPopup } from '@/components/CustomPopup/CartPopup'
 
 type CartLineItem = NonNullable<Cart['items']>[number]
 
@@ -16,8 +18,16 @@ export default function CartItem({ item }: { item: CartLineItem }) {
   const product = typeof item.product === 'object' && item.product ? item.product : null
   const lineId = item.id
   const qty = item.quantity
-  
+
+  const [isShown, setIsShown] = useState(false)
+  const [size, setSize] = useState<number | undefined>(undefined)
+
   if (!product) return null
+
+  const popupHandler = () => {
+    document.body.style.overflow = isShown ? '' : 'hidden'
+    setIsShown((v) => !v)
+  }
 
   const handleDecrement = () => {
     if (!lineId) return
@@ -38,11 +48,36 @@ export default function CartItem({ item }: { item: CartLineItem }) {
             <h2 className="hover:text-secondary cursor-pointer">{product.title}</h2>
             <span>${product.currentPrice}</span>
           </div>
-          {product.subTitle && (
-            <div>
-              <span className="text-secondary">{product.subTitle}</span>
+          <div>
+            <span>blablabla</span>
+          </div>
+          <div>
+            <span>black</span>
+            <span>name</span>
+          </div>
+          <div className="relative">
+            <button
+              className="underline underline-offset-2 cursor-pointer relative z-20"
+              onClick={popupHandler}
+            >
+              {size ?? 'M'}
+            </button>
+            <div className="absolute -bottom-4 left-15">
+              <img src="/media/cart-arrow-1.gif" />
             </div>
-          )}
+            <div className="absolute top-2.5 -left-12">
+              <img src="/media/cart-arrow-2.gif" />
+            </div>
+            <div className="absolute -top-25 -left-12">
+              <img src="/media/cart-arrow-3.gif" />
+            </div>
+            <div className="absolute -top-7 -left-[231px] rotate-[327deg] ">
+              <img src="/media/cart-arrow-4.gif" />
+            </div>
+            <div className="absolute -top-25 -left-[109px] rotate-[60deg] h-12">
+              <img className='h-full' src="/media/cart-arrow-5.gif" />
+            </div>
+          </div>
         </div>
       </div>
       <div className="mt-4 flex relative z-10">
@@ -67,6 +102,16 @@ export default function CartItem({ item }: { item: CartLineItem }) {
           <CartFavourite />
         </button>
       </div>
+      <CartPopup
+        isShown={isShown}
+        onClose={() => setIsShown(false)}
+        item={{
+          title: product.title,
+          price: product.currentPrice,
+          imageUrl: product.imageUrl,
+        }}
+        onUpdate={(newSize) => setSize(newSize)}
+      />
     </div>
   )
 }

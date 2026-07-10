@@ -5,8 +5,6 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import type { Swiper as SwiperType } from 'swiper'
 import { SummaryArrow } from '@/components/icons/SummaryArrow'
 
-// Self-contained item shape. This popup (size picker) is currently unused after
-// the cart moved to the plugin, where size is not a purchasable variant.
 type CartPopupItem = {
   title?: string | null
   price?: number | null
