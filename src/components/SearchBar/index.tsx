@@ -1,6 +1,6 @@
 'use client'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useEffect, useRef, useState } from 'react'
 import { useLockScroll } from '@/hooks/useLockScroll'
 
 export const SearchBar = ({ additionalClasses }: { additionalClasses?: string }) => {
@@ -10,6 +10,8 @@ export const SearchBar = ({ additionalClasses }: { additionalClasses?: string })
   const [inputValue, setInputValue] = useState(params.get('q') ?? '')
   const [phase, setPhase] = useState<0 | 1 | 2>(0)
   const [recent, setRecent] = useState<string[]>([])
+
+  const wrapperRef = useRef<HTMLDivElement>(null)
 
 
   useLockScroll(phase === 2)
@@ -22,6 +24,19 @@ export const SearchBar = ({ additionalClasses }: { additionalClasses?: string })
   }
 
   const handleBlur = () => setPhase(0)
+
+  useEffect(() => {
+    if (phase === 0) return
+
+    const onPointerDown = (e: MouseEvent) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
+        handleBlur()
+      }
+    }
+
+    document.addEventListener('mousedown', onPointerDown)
+    return () => document.removeEventListener('mousedown', onPointerDown)
+  }, [phase])
 
 
   const formHandler = (e: FormEvent<HTMLFormElement>) => {
@@ -100,6 +115,7 @@ export const SearchBar = ({ additionalClasses }: { additionalClasses?: string })
 
   return (
     <div
+      ref={wrapperRef}
       onClick={handleFocus}
       className={`${additionalClasses ?? ''}`}>
       {/*<div onClick={handleBlur} className='absolute bg-gray-500 opacity-30 top-0 left-0 w-full h-screen'/>*/}

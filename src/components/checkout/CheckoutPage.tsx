@@ -1,7 +1,6 @@
 // @ts-nocheck
 'use client'
 
-import { Media } from '@/components/Media'
 import { Message } from '@/components/Message'
 import { Price } from '@/components/Price'
 import { Button } from '@/components/ui/button'
@@ -50,6 +49,12 @@ export const CheckoutPage: React.FC = () => {
   const [isProcessingPayment, setProcessingPayment] = useState(false)
 
   const cartIsEmpty = !cart || !cart.items || !cart.items.length
+
+  const cartTotal = (cart?.items ?? []).reduce((sum, item) => {
+    const product = typeof item.product === 'object' && item.product ? item.product : null
+    const price = typeof product?.currentPrice === 'number' ? product.currentPrice : 0
+    return sum + price * (item.quantity || 0)
+  }, 0)
 
   const canGoToPayment = Boolean(
     (email || user) && billingAddress && (billingAddressSameAsShipping || shippingAddress),
@@ -357,72 +362,35 @@ export const CheckoutPage: React.FC = () => {
           <h2 className="text-3xl font-medium">Your cart</h2>
           {cart?.items?.map((item, index) => {
             if (typeof item.product === 'object' && item.product) {
-              const {
-                product,
-                product: { id, meta, title, gallery },
-                quantity,
-                variant,
-              } = item
+              const { product, quantity } = item
 
               if (!quantity) return null
-
-              let image = gallery?.[0]?.image || meta?.image
-              let price = product?.priceInUSD
-
-              const isVariant = Boolean(variant) && typeof variant === 'object'
-
-              if (isVariant) {
-                price = variant?.priceInUSD
-
-                const imageVariant = product.gallery?.find((item) => {
-                  if (!item.variantOption) return false
-                  const variantOptionID =
-                    typeof item.variantOption === 'object'
-                      ? item.variantOption.id
-                      : item.variantOption
-
-                  const hasMatch = variant?.options?.some((option) => {
-                    if (typeof option === 'object') return option.id === variantOptionID
-                    else return option === variantOptionID
-                  })
-
-                  return hasMatch
-                })
-
-                if (imageVariant && typeof imageVariant.image !== 'string') {
-                  image = imageVariant.image
-                }
-              }
 
               return (
                 <div className="flex items-start gap-4" key={index}>
                   <div className="flex items-stretch justify-stretch h-20 w-20 p-2 rounded-lg border">
                     <div className="relative w-full h-full">
-                      {image && typeof image !== 'string' && (
-                        <Media className="" fill imgClassName="rounded-lg" resource={image} />
+                      {product.imageUrl && (
+                        <img
+                          className="w-full h-full object-cover rounded-lg"
+                          src={product.imageUrl}
+                          alt={product.title ?? ''}
+                        />
                       )}
                     </div>
                   </div>
                   <div className="flex grow justify-between items-center">
                     <div className="flex flex-col gap-1">
-                      <p className="font-medium text-lg">{title}</p>
-                      {variant && typeof variant === 'object' && (
-                        <p className="text-sm font-mono text-primary/50 tracking-widest">
-                          {variant.options
-                            ?.map((option) => {
-                              if (typeof option === 'object') return option.label
-                              return null
-                            })
-                            .join(', ')}
-                        </p>
-                      )}
+                      <p className="font-medium text-lg">{product.title}</p>
                       <div>
                         {'x'}
                         {quantity}
                       </div>
                     </div>
 
-                    {typeof price === 'number' && <Price amount={price} />}
+                    {typeof product.currentPrice === 'number' && (
+                      <Price currentPrice={product.currentPrice} />
+                    )}
                   </div>
                 </div>
               )
@@ -432,7 +400,7 @@ export const CheckoutPage: React.FC = () => {
           <hr />
           <div className="flex justify-between items-center gap-2">
             <span className="uppercase">Total</span>{' '}
-            <Price className="text-3xl font-medium" amount={cart.subtotal || 0} />
+            <Price className="text-3xl font-medium" currentPrice={cartTotal} />
           </div>
         </div>
       )}

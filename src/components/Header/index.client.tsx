@@ -200,9 +200,8 @@ export function HeaderClient({ header }: Props) {
       >
         <div className="container">
           <div className="flex h-15 justify-between items-center">
-            <Link href='/test' className="w-10 h-10 border z-50">
-              {/* eslint-disable-next-line @next/next/no-img-element,jsx-a11y/alt-text */}
-              {/*<img src={logo.url || undefined} />*/}
+            <Link href='/test' className="w-20 h-20 z-50">
+              <img className='w-full h-full' src="/icon/logo.svg" alt="Logo" />
             </Link>
 
             <ul className="flex absolute text-black h-15 w-full items-center justify-center left-0">

@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="851ba12a-6553-4555-82c4-b7f488a2d6c0" name="Changes" comment=" feat: migrate cart to Payload ecommerce plugin, sync product currentPrice into    &#10;  priceInUSD, and rework AddToCart and cart items to use the plugin cart">
-      <change beforePath="$PROJECT_DIR$/src/components/CartItem/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CartItem/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CustomPopup/CartPopup/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CustomPopup/CartPopup/index.tsx" afterDir="false" />
+    <list default="true" id="851ba12a-6553-4555-82c4-b7f488a2d6c0" name="Changes" comment="feat: implement size selection popup in cart item component for enhanced user interaction">
+      <change afterPath="$PROJECT_DIR$/public/icon/logo2.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/index.client.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/index.client.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SearchBar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchBar/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/checkout/CheckoutPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/checkout/CheckoutPage.tsx" afterDir="false" />
     </list>
     <list id="1933d2ca-499b-435b-8a8b-18888fd7be8b" name="Changes by lapkomo2018" comment="" />
     <list id="4d19f5f5-0866-4a1f-9fca-6ee3f055ed10" name="Changes by maksim" comment="" />
@@ -147,11 +150,11 @@
       <recent name="D:\HTML\payload-nike\src\app\(app)\shop" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\HTML\payload-nike\public\icon" />
       <recent name="D:\HTML\payload-nike\src\app\(app)\profile\settings" />
       <recent name="D:\HTML\payload-nike\src\components\CustomInput" />
       <recent name="D:\HTML\payload-nike\src\components\CustomPopup" />
       <recent name="D:\HTML\payload-nike\src\app\(app)\(account)" />
-      <recent name="D:\HTML\payload-nike\public" />
     </key>
   </component>
   <component name="RunManager" selected="Docker.docker-compose.yml.db: Compose Deployment">
@@ -310,7 +313,7 @@
       <workItem from="1783422748977" duration="6000" />
       <workItem from="1783582831483" duration="28470000" />
       <workItem from="1783671181869" duration="1622000" />
-      <workItem from="1783691533444" duration="8235000" />
+      <workItem from="1783691533444" duration="10597000" />
     </task>
     <task id="LOCAL-00001" summary="feat: enhance header configuration with logo and nested navigation structure">
       <option name="closed" value="true" />
@@ -464,7 +467,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783699962094</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="feat: implement size selection popup in cart item component for enhanced user interaction">
+      <option name="closed" value="true" />
+      <created>1783700232556</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1783700232556</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -545,7 +556,8 @@
     <MESSAGE value="feat: refactor DateInput component to simplify date handling and improve user experience" />
     <MESSAGE value="feat: redesign footer with configurable columns and sub-footer, remove FooterMenu &#10;  and update Footer global schema" />
     <MESSAGE value=" feat: migrate cart to Payload ecommerce plugin, sync product currentPrice into    &#10;  priceInUSD, and rework AddToCart and cart items to use the plugin cart" />
-    <option name="LAST_COMMIT_MESSAGE" value=" feat: migrate cart to Payload ecommerce plugin, sync product currentPrice into    &#10;  priceInUSD, and rework AddToCart and cart items to use the plugin cart" />
+    <MESSAGE value="feat: implement size selection popup in cart item component for enhanced user interaction" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: implement size selection popup in cart item component for enhanced user interaction" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
